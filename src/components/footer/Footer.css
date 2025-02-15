@@ -1,0 +1,92 @@
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.footer {
+  position: absolute;
+  bottom: -80px;
+  right: 0;
+  left: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+  }
+  
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    margin-bottom: 20px;
+  }
+  
+  .footer-left p {
+    font-size: 14px;
+    color: #bbb;
+  }
+  
+  .footer-center .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .footer-center .footer-links li {
+    font-size: 16px;
+  }
+  
+  .footer-center .footer-links li a {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-center .footer-links li a:hover {
+    color: #ff5722;
+  }
+  
+  .footer-right .social-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .footer-right .social-links li a {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 24px; /* Adjusted size for better visibility */
+    transition: color 0.3s ease;
+  }
+  
+  .footer-right .social-links li a:hover {
+    color: #ff5722;
+  }
+  
+  @media (min-width: 768px) {
+    .footer-container {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+    .footer-left,
+    .footer-center,
+    .footer-right {
+      margin-bottom: 0;
+    }
+  }
+  

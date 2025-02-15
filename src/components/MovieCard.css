@@ -1,0 +1,108 @@
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  background-color: #f4f4f4; /* Soft background for contrast */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.movies-items {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  gap: 40px;
+}
+
+.movies-items__inner .movies-items__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.movies-items__inner .movies-items__header > h1 {
+  font-size: 28px;
+  color: #333;
+  font-weight: bold;
+  margin: 0;
+}
+
+.movies-items__inner .movies-items__header a {
+  color: #ff5722;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.movies-items__inner .movies-items__header a:hover {
+  text-decoration: underline;
+}
+
+.movies-items .moviecard-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+/* MovieCard CSS */
+.moviecard-items {
+  position: relative;
+  background-image: url("../Logo/jokermovie.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 280px;
+  width: calc(16.67% - 17px); 
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.moviecard-items:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Enhanced hover effect */
+}
+
+.moviecard-items .movie-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for contrast */
+  color: #fff;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 0 0 20px 20px;
+}
+
+.watchlist-btn {
+  font-size: 26px;
+  border: none;
+  border-radius: 4px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 6px;
+  background-color: rgba(0, 0, 0, 0.6); /* Slight background color */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.watchlist-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Darker on hover */
+}
+
+
+.moviecard-items:hover .popup-message {
+  display: block; /* Show popup on hover */
+}

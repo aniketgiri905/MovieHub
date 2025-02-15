@@ -1,0 +1,41 @@
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
+
+.banner {
+  display: flex;
+  overflow: hidden;
+  height: 400px;
+  width: 100%;
+  position: relative;
+}
+
+.banner img {
+  height: 100%;
+  width: 100%;
+  min-width: 350px;
+  object-fit: fill;
+  /* flex-shrink: 0; */
+}
+
+.banner-container:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollBanner {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.banner-container {
+  display: flex;
+  animation: scrollBanner 55s linear infinite;
+}

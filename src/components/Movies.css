@@ -1,0 +1,49 @@
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
+
+.movies-items {
+  display: flex;
+  padding: 0 40px;
+  flex-direction: column;
+}
+.movies-items__inner .movies-items__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.movies-items__inner .movies-items__header > h1 {
+  font-size: 22px;
+  text-align: center;
+  margin: 25px 0 15px;
+}
+
+.movies-items .moviecard-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 30px 20px;
+}
+
+/* No Movies Found Section */
+.no-movies-found {
+  text-align: center;
+  margin-top: 20px;
+  padding: 30px 40px 40px;
+  background-color: #ffebee; 
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.no-movies-found h2 {
+  font-size: 24px;
+  color: #f44336; 
+  margin-bottom: 10px;
+}
+
+.no-movies-found p {
+  font-size: 18px;
+  color: #555;
+  margin-top: 0;
+}
