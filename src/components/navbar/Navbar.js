@@ -59,11 +59,15 @@ const Navbar = ({
 
   const handleUserLogout = () => {
     setIsUserLoggedIn(false);
+    localStorage.setItem("isUserLoggedIn", JSON.stringify(false));
     setIsSidebarOpen(false);
+    navigate("./");
   };
 
   const handleWatchListClick = () => {
     if (!isUserLoggedIn) {
+      setUserNavigateToLoginSignup("login");
+      localStorage.setItem("redirectTo", "/watchlist");  
       navigate(`/login`);
     } else {
       navigate(`/watchlist`);
@@ -89,7 +93,7 @@ const Navbar = ({
           WatchList
         </a>
 
-        <div onClick={toggleSidebar}>
+        <div onClick={toggleSidebar} className="hamburger">
           <Hanburger />
         </div>
       </div>

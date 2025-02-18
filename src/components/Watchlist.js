@@ -3,13 +3,21 @@ import "./Watchlist.css";
 import UpArrow from "../SVG/UpArrow";
 import DownArrow from "../SVG/DownArrow";
 import genreids from "../Utility/genre.js";
+import { useNavigate } from "react-router-dom";
 
-const Watchlist = ({ watchlist, setWatchlist, handleRemoveFromWatchlist }) => {
+const Watchlist = ({
+  watchlist,
+  setWatchlist,
+  handleRemoveFromWatchlist,
+  isUserLoggedIn,
+  setIsUserLoggedIn,
+}) => {
   const [search, setSearch] = useState("");
   const [sortRatingOrder, setSortRatingOrder] = useState(null);
   const [sortPopularitygOrder, setSortPopularityOrder] = useState(null);
   const [genreList, setGenreList] = useState(["All Genres"]);
   const [currGenre, setCurrentGenre] = useState("All Genres");
+  const navigate = useNavigate();
 
   useEffect(() => {
     let genreArr = watchlist.map((movieObj) => {
@@ -75,6 +83,10 @@ const Watchlist = ({ watchlist, setWatchlist, handleRemoveFromWatchlist }) => {
         .toLowerCase()
         .includes(search.toLowerCase());
     });
+
+  // if (!isUserLoggedIn) {
+  //   return <Navigate to="/login" />;
+  // }
 
   return (
     <>
