@@ -26,7 +26,7 @@ function App() {
   const [userNavigateToLoginSignup, setUserNavigateToLoginSignup] =
     useState("login");
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-  const navigate = useNavigate();
+
   useEffect(() => {
     const loggedInUser = JSON.parse(localStorage.getItem("isUserLoggedIn"));
     if (loggedInUser !== null) {
