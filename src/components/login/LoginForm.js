@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./LoginForm.css";
+import { useNavigate } from "react-router";
 
 const LoginForm = ({ userNavigateToLoginSignup, setIsUserLoggedIn }) => {
   const [activeTab, setActiveTab] = useState(userNavigateToLoginSignup);
@@ -10,9 +11,17 @@ const LoginForm = ({ userNavigateToLoginSignup, setIsUserLoggedIn }) => {
   const [signupConfirmPassword, setSignupConfirmPassword] = useState("");
   const [loginError, setLoginError] = useState(""); // To display login error message
   const [signupError, setSignupError] = useState(""); // To display signup error message
+  const navigate = useNavigate();
+
+  // Track the previous page the user was on
+  const [redirectTo, setRedirectTo] = useState(null);
 
   useEffect(() => {
-    // Whenever userNavigateToLoginSignup changes, update activeTab
+    // Check if the user is trying to go to a restricted page before login (like Watchlist)
+    const intendedPage = localStorage.getItem("redirectTo");
+    if (intendedPage) {
+      setRedirectTo(intendedPage); // Store that page if found
+    }
     setActiveTab(userNavigateToLoginSignup);
   }, [userNavigateToLoginSignup]);
 
@@ -47,9 +56,18 @@ const LoginForm = ({ userNavigateToLoginSignup, setIsUserLoggedIn }) => {
     );
 
     if (user) {
-      setLoginError(""); // Clear any previous error
+      setLoginError("");
       alert("Login Successful");
+
       setIsUserLoggedIn(true);
+
+      // After login, redirect to the intended page (if any)
+      if (redirectTo) {
+        navigate(redirectTo);
+        localStorage.removeItem("redirectTo"); // Clear redirect after use
+      } else {
+        navigate("/"); // Default home page
+      }
     } else {
       setLoginError("Invalid username or password");
     }

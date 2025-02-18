@@ -1,7 +1,7 @@
 import "./App.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Movies from "./components/Movies";
 import Navbar from "./components/navbar/Navbar";
 import Banner from "./components/Banner";
@@ -23,11 +23,24 @@ function App() {
   const [pageNo, setPageNo] = useState(1);
   const [searchMovie, setSearchMovie] = useState("");
   const [selectedGenreId, setSelectedGenreId] = useState("");
-  const [userNavigateToLoginSignup, setUserNavigateToLoginSignup] = useState("");
+  const [userNavigateToLoginSignup, setUserNavigateToLoginSignup] =
+    useState("login");
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
-  console.log(popularMovies);
-  console.log(topRatedMovies);
+  useEffect(() => {
+    const loggedInUser = JSON.parse(localStorage.getItem("isUserLoggedIn"));
+    if (loggedInUser !== null) {
+      setIsUserLoggedIn(loggedInUser); 
+    }
+  }, []);
+
+  // This function sets the login status both in the state and in localStorage
+  const handleIsUserLoggedIn = (status) => {
+    setIsUserLoggedIn(status);
+    localStorage.setItem("isUserLoggedIn", JSON.stringify(status)); 
+  };
+
+  // Fetch movies (popular and top-rated) from API
   useEffect(() => {
     axios
       .get(
@@ -52,12 +65,14 @@ function App() {
       });
   }, [pageNo]);
 
+  // Function to add a movie to the watchlist
   let handleAddtoWatchlist = (movieObj) => {
     let newWatchlist = [...watchlist, movieObj];
     localStorage.setItem("moviesApp", JSON.stringify(newWatchlist));
     setWatchlist(newWatchlist);
   };
 
+  // Function to remove a movie from the watchlist
   let handleRemoveFromWatchlist = (movieObj) => {
     let filteredWatchlist = watchlist.filter((movie) => {
       return movie.id !== movieObj.id;
@@ -66,6 +81,7 @@ function App() {
     localStorage.setItem("moviesApp", JSON.stringify(filteredWatchlist));
   };
 
+  // Load watchlist from localStorage if available
   useEffect(() => {
     let moviesFromLocalStorage = localStorage.getItem("moviesApp");
     if (!moviesFromLocalStorage) {
@@ -74,17 +90,10 @@ function App() {
     setWatchlist(JSON.parse(moviesFromLocalStorage));
   }, []);
 
-  //  const abc = () => {
-  //   const res = fetch ("http://localhost:3005/watchlist")
-  //     .then((res)=>{
-  //       console.log("res", res);
-  //     })
-  //  }
-
   return (
     <>
       <div className="main-content">
-        <BrowserRouter>
+    
           <Navbar
             setSearchMovie={setSearchMovie}
             searchMovie={searchMovie}
@@ -95,6 +104,7 @@ function App() {
           />
 
           <Routes>
+            {/* Home route */}
             <Route
               path="/"
               element={
@@ -111,94 +121,99 @@ function App() {
                 </>
               }
             />
-            
+
+            {/* Watchlist route */}
             <Route
               path="/watchlist"
               element={
-                <>
+                // If the user is logged in, show the watchlist, otherwise redirect to login
+                isUserLoggedIn && (
                   <Watchlist
                     watchlist={watchlist}
                     setWatchlist={setWatchlist}
                     handleRemoveFromWatchlist={handleRemoveFromWatchlist}
+                    isUserLoggedIn={isUserLoggedIn}
+                    setIsUserLoggedIn={setIsUserLoggedIn}
                   />
-                </>
+                ) 
               }
             />
 
+            {/* Movie Details */}
             <Route
               path="/movie/:id"
-              element={
-                <>
-                  <MovieDetails />
-                </>
-              }
+              element={<MovieDetails />}
             />
 
+            {/* Movies by Genre */}
             <Route
               path="/genre/:id"
               element={
-                <>
-                  <MoviesByGenreList
-                    popularMovies={popularMovies}
-                    topRatedMovies={topRatedMovies}
-                    selectedGenreId={selectedGenreId}
-                  />
-                </>
+                <MoviesByGenreList
+                  popularMovies={popularMovies}
+                  topRatedMovies={topRatedMovies}
+                  selectedGenreId={selectedGenreId}
+                />
               }
             />
 
+            {/* Popular Movies */}
             <Route
               path="/movies/popular-movies"
               element={
-                <>
-                  <PopularMovies
-                    popularMovies={popularMovies}
-                    handleAddtoWatchlist={handleAddtoWatchlist}
-                    handleRemoveFromWatchlist={handleRemoveFromWatchlist}
-                    watchlist={watchlist}
-                    pageNo={pageNo}
-                    setPageNo={setPageNo}
-                  />
-                </>
+                <PopularMovies
+                  popularMovies={popularMovies}
+                  handleAddtoWatchlist={handleAddtoWatchlist}
+                  handleRemoveFromWatchlist={handleRemoveFromWatchlist}
+                  watchlist={watchlist}
+                  pageNo={pageNo}
+                  setPageNo={setPageNo}
+                />
               }
             />
 
+            {/* Top Rated Movies */}
             <Route
               path="/movies/top-rated-movies"
               element={
-                <>
-                  <TopRatedMovies
-                    topRatedMovies={topRatedMovies}
-                    handleAddtoWatchlist={handleAddtoWatchlist}
-                    handleRemoveFromWatchlist={handleRemoveFromWatchlist}
-                    watchlist={watchlist}
-                    pageNo={pageNo}
-                    setPageNo={setPageNo}
-                  />
-                </>
+                <TopRatedMovies
+                  topRatedMovies={topRatedMovies}
+                  handleAddtoWatchlist={handleAddtoWatchlist}
+                  handleRemoveFromWatchlist={handleRemoveFromWatchlist}
+                  watchlist={watchlist}
+                  pageNo={pageNo}
+                  setPageNo={setPageNo}
+                />
               }
             />
           </Routes>
 
           <Routes>
+            {/* Footer routes */}
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           </Routes>
 
           <Routes>
+            {/* Login and Signup routes */}
             <Route
               path="/login"
-              element={<LoginForm userNavigateToLoginSignup={userNavigateToLoginSignup} setIsUserLoggedIn={setIsUserLoggedIn}/>}
+              element={
+                <LoginForm
+                  userNavigateToLoginSignup={userNavigateToLoginSignup}
+                  setIsUserLoggedIn={handleIsUserLoggedIn} // Pass login handler here
+                />
+              }
             />
             <Route
               path="/sign-up"
-              element={<LoginForm userNavigateToLoginSignup={userNavigateToLoginSignup}/>}
+              element={<LoginForm userNavigateToLoginSignup={userNavigateToLoginSignup} />}
             />
           </Routes>
 
           <Footer />
-        </BrowserRouter>
+   
       </div>
     </>
   );
