@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import "./MovieDetails.css";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 
 const MovieDetails = () => {
@@ -12,6 +12,7 @@ const MovieDetails = () => {
   const [rating, setRating] = useState("");
   const [recommendedMovies, setRecommendedMovies] = useState([]);
   const [userReviews, setUserReviews] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch movie details
@@ -75,7 +76,12 @@ const MovieDetails = () => {
       });
   }, [id]);
 
-  console.log("setUserReviews", userReviews);
+  const handleCardClick = (id) => {
+    navigate(`/movie/${id}`);
+    window.scrollTo(0, 0)
+  };
+
+  // console.log("setUserReviews", userReviews);
 
   useEffect(() => {
     const savedRating = localStorage.getItem(`movie-${id}-rating`);
@@ -265,7 +271,7 @@ const MovieDetails = () => {
         </div>
         <div className="recommended-movie-cards">
           {recommendedMovies.map((movie) => (
-            <div key={movie.id} className="recommended-movie-card">
+            <div key={movie.id} className="recommended-movie-card" onClick={() => handleCardClick(movie.id)}>
               {movie.poster_path && (
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}

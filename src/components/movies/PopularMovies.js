@@ -12,11 +12,10 @@ const PopularMovies = ({
   setPageNo,
 }) => {
 
- 
-  // Ensure data is being passed and logged
+
   useEffect(() => {
-    console.log("Popular Movies Data: ", popularMovies);
-  }, [popularMovies]);
+    window.scroll(0,0);
+  }, []);
 
   function pageForward() {
     setPageNo((prev) => prev + 1);

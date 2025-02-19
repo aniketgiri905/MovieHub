@@ -1,23 +1,47 @@
 import React, { useState, useEffect } from "react";
 import "./LoginForm.css";
+import { useNavigate } from "react-router";
 
-const LoginForm = ({ userNavigateToLoginSignup, setIsUserLoggedIn }) => {
+const LoginForm = ({
+  userNavigateToLoginSignup,
+  setIsUserLoggedIn,
+  setIsForgotPassword,
+}) => {
   const [activeTab, setActiveTab] = useState(userNavigateToLoginSignup);
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [signupUsername, setSignupUsername] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
   const [signupConfirmPassword, setSignupConfirmPassword] = useState("");
-  const [loginError, setLoginError] = useState(""); // To display login error message
-  const [signupError, setSignupError] = useState(""); // To display signup error message
+  const [loginError, setLoginError] = useState("");
+  const [signupError, setSignupError] = useState("");
+
+  const navigate = useNavigate();
+
+  // Track the previous page the user was on
+  const [redirectTo, setRedirectTo] = useState(null);
 
   useEffect(() => {
-    // Whenever userNavigateToLoginSignup changes, update activeTab
+    // Check if the user is trying to go to a restricted page before login (like Watchlist)
+    const intendedPage = localStorage.getItem("redirectTo");
+    if (intendedPage) {
+      setRedirectTo(intendedPage);
+    }
     setActiveTab(userNavigateToLoginSignup);
   }, [userNavigateToLoginSignup]);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
+  };
+
+  const handleDateOfBirth = (e) => {
+    setDateOfBirth(e.target.value);
+  };
+
+  const handleForgotPassword = () => {
+    setIsForgotPassword(true);
+    navigate("/forgot-password");
   };
 
   const handleSignupUsername = (e) => {
@@ -47,9 +71,18 @@ const LoginForm = ({ userNavigateToLoginSignup, setIsUserLoggedIn }) => {
     );
 
     if (user) {
-      setLoginError(""); // Clear any previous error
+      setLoginError("");
       alert("Login Successful");
+
       setIsUserLoggedIn(true);
+
+      // After login, redirect to the intended page (if any)
+      if (redirectTo) {
+        navigate(redirectTo);
+        localStorage.removeItem("redirectTo"); // Clear redirect after use
+      } else {
+        navigate("/"); // Default home page
+      }
     } else {
       setLoginError("Invalid username or password");
     }
@@ -75,6 +108,7 @@ const LoginForm = ({ userNavigateToLoginSignup, setIsUserLoggedIn }) => {
     // Add new user to localStorage
     users.push({
       username: signupUsername,
+      dob: dateOfBirth,
       password: signupPassword,
     });
     localStorage.setItem("users", JSON.stringify(users));
@@ -120,6 +154,9 @@ const LoginForm = ({ userNavigateToLoginSignup, setIsUserLoggedIn }) => {
             />
             {loginError && <p className="error-message">{loginError}</p>}
             <button type="submit">Login</button>
+            <div className="forgot-password">
+              <a onClick={handleForgotPassword}>Forgot password?</a>
+            </div>
           </form>
         ) : (
           <form className="auth-form" onSubmit={handleSignupSubmit}>
@@ -130,6 +167,13 @@ const LoginForm = ({ userNavigateToLoginSignup, setIsUserLoggedIn }) => {
               placeholder="Enter username"
               required
               onChange={handleSignupUsername}
+            />
+            <input
+              type="date"
+              value={dateOfBirth}
+              onChange={handleDateOfBirth}
+              required
+              placeholder="Date of Birth"
             />
             <input
               type="password"

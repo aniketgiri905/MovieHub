@@ -11,8 +11,8 @@ const TopRatedMovies = ({
   setPageNo,
 }) => {
   useEffect(() => {
-    console.log("topRatedMovies Movies Data: ", topRatedMovies);
-  }, [topRatedMovies]);
+    window.scroll(0, 0);
+  }, []);
 
   function pageForward() {
     setPageNo((prev) => prev + 1);
