@@ -9,7 +9,7 @@ body {
 }
 
 /* Movie Details Section */
-.MovieDetails {
+.movie-details {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -20,7 +20,7 @@ body {
   margin: 40px;
 }
 
-.MovieDetails .header img {
+.movie-details .header img {
   height: 400px;
   width: 100%;
   max-width: 360px;
@@ -30,7 +30,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.MovieDetails .header {
+.movie-details .header {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
@@ -38,24 +38,24 @@ body {
   width: 100%;
 }
 
-.MovieDetails .header-details {
+.movie-details .header-details {
   flex: 1;
 }
 
-.MovieDetails .header-details h1 {
+.movie-details .header-details h1 {
   font-size: 32px; /* Reduced size */
   line-height: 48px;
   margin: 0;
   font-weight: 600;
 }
 
-.MovieDetails .header-details h1 .tagline {
+.movie-details .header-details h1 .tagline {
   font-size: 14px; /* Smaller tagline font size */
   margin-left: 10px;
   color: #ff5722;
 }
 
-.MovieDetails .header-details > p {
+.movie-details .header-details > p {
   font-size: 15px; /* Slightly smaller font */
   line-height: 22px;
   color: #7f7f7f;
@@ -326,6 +326,7 @@ iframe {
   transition: transform 0.3s ease;
   flex-shrink: 0;
   cursor: pointer;
+  position: relative;
 }
 .recommended-movie-card:hover .recommended-movie-title h4 {
   color: #ff5722;
@@ -357,6 +358,24 @@ iframe {
   content: '';
   width: 20px; 
   flex-shrink: 0;
+}
+
+.recommended-movie-cards .watchlist-btn {
+  font-size: 26px;
+  border: none;
+  border-radius: 8px;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  padding: 6px;
+  background-color: rgba(0, 0, 0, 0.6); /* Slight background color */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.recommended-movie-cards .watchlist-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8); 
 }
 
 /* General Styles for Reviews Section */
