@@ -2,8 +2,14 @@ import React, { useEffect, useState, useMemo } from "react";
 import "./MovieDetails.css";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
+import CloseArrow from "../SVG/CloseArrow";
+import AddToWatchList from "../SVG/AddToWatchList";
 
-const MovieDetails = () => {
+const MovieDetails = ({
+  handleAddtoWatchlist,
+  handleRemoveFromWatchlist,
+  watchlist,
+}) => {
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
   const [movieVideos, setMovieVideos] = useState([]);
@@ -78,7 +84,7 @@ const MovieDetails = () => {
 
   const handleCardClick = (id) => {
     navigate(`/movie/${id}`);
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   };
 
   // console.log("setUserReviews", userReviews);
@@ -100,13 +106,27 @@ const MovieDetails = () => {
     return movieVideos.slice(0, 3);
   }, [movieVideos]);
 
+  // watchlist
+  const handleWatchlistButtonClick = (event, movie) => {
+    event.stopPropagation(); // Prevent click from triggering movie card navigation
+
+    // Check if the current movie is in the watchlist
+    const isInWatchlist = watchlist.some((item) => item.id === movie.id);
+
+    if (isInWatchlist) {
+      handleRemoveFromWatchlist(movie);
+    } else {
+      handleAddtoWatchlist(movie);
+    }
+  };
+
   if (!movieDetails) {
     return <div>Loading...</div>;
   }
 
   return (
     <>
-      <div className="MovieDetails">
+      <div className="MovieDetails movie-details">
         <div className="header">
           <img
             src={`https://image.tmdb.org/t/p/original/${movieDetails.poster_path}`}
@@ -230,7 +250,7 @@ const MovieDetails = () => {
                                 : ""
                             }`}
                           >
-                            &#9733; 
+                            &#9733;
                           </span>
                         ))}
                       </span>
@@ -271,7 +291,11 @@ const MovieDetails = () => {
         </div>
         <div className="recommended-movie-cards">
           {recommendedMovies.map((movie) => (
-            <div key={movie.id} className="recommended-movie-card" onClick={() => handleCardClick(movie.id)}>
+            <div
+              key={movie.id}
+              className="recommended-movie-card"
+              onClick={() => handleCardClick(movie.id)}
+            >
               {movie.poster_path && (
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -282,6 +306,16 @@ const MovieDetails = () => {
               <div className="recommended-movie-title">
                 <h4>{movie.title}</h4>
               </div>
+              <button
+                className="watchlist-btn"
+                onClick={(e) => handleWatchlistButtonClick(e, movie)}
+              >
+                {watchlist.some((item) => item.id === movie.id) ? (
+                  <CloseArrow />
+                ) : (
+                  <AddToWatchList />
+                )}
+              </button>
             </div>
           ))}
         </div>

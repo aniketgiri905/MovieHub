@@ -147,7 +147,16 @@ function App() {
           />
 
           {/* Movie Details */}
-          <Route path="/movie/:id" element={<MovieDetails />} />
+          <Route
+            path="/movie/:id"
+            element={
+              <MovieDetails
+                handleAddtoWatchlist={handleAddtoWatchlist}
+                handleRemoveFromWatchlist={handleRemoveFromWatchlist}
+                watchlist={watchlist}
+              />
+            }
+          />
 
           {/* Movies by Genre */}
           <Route
@@ -206,7 +215,7 @@ function App() {
             element={
               <LoginForm
                 userNavigateToLoginSignup={userNavigateToLoginSignup}
-                setIsUserLoggedIn={handleIsUserLoggedIn} 
+                setIsUserLoggedIn={handleIsUserLoggedIn}
                 setIsForgotPassword={setIsForgotPassword}
               />
             }
@@ -219,7 +228,12 @@ function App() {
               />
             }
           />
-          <Route path="/forgot-password" element={<ForgotPassword setIsForgotPassword={setIsForgotPassword}/>} />
+          <Route
+            path="/forgot-password"
+            element={
+              <ForgotPassword setIsForgotPassword={setIsForgotPassword} />
+            }
+          />
         </Routes>
 
         <Footer />
