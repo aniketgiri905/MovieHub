@@ -3,9 +3,9 @@ body {
   font-size: 16px;
 }
 
-.movies-items {
+.Movies__movies-items {
   display: flex;
-  padding: 0 40px;
+  padding: 40px 40px 0 40px;
   flex-direction: column;
 }
 .movies-items__inner .movies-items__header {
@@ -19,7 +19,7 @@ body {
   margin: 25px 0 15px;
 }
 
-.movies-items .moviecard-wrapper {
+.Movies__movies-items .moviecard-wrapper {
   display: flex;
   flex-wrap: wrap;
   width: 100%;

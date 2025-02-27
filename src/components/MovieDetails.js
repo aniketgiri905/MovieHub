@@ -106,7 +106,7 @@ const MovieDetails = () => {
 
   return (
     <>
-      <div className="movie-details">
+      <div className="MovieDetails">
         <div className="header">
           <img
             src={`https://image.tmdb.org/t/p/original/${movieDetails.poster_path}`}
@@ -165,7 +165,7 @@ const MovieDetails = () => {
         </div>
       </div>
 
-      <div className="movie-cast">
+      <div className="MovieDetails movie-cast">
         <div className="heading">
           <h3>Cast</h3>
         </div>
@@ -184,7 +184,7 @@ const MovieDetails = () => {
         </div>
       </div>
 
-      <div className="movie-crew">
+      <div className="MovieDetails movie-crew">
         <div className="heading">
           <h3>Crew</h3>
         </div>
@@ -203,7 +203,7 @@ const MovieDetails = () => {
         </div>
       </div>
 
-      <div className="user-reviews">
+      <div className="MovieDetails user-reviews">
         <div className="heading">
           <h3>User Reviews</h3>
         </div>
@@ -248,7 +248,7 @@ const MovieDetails = () => {
         )}
       </div>
 
-      <div className="videos">
+      <div className="MovieDetails videos">
         {videosToDisplay.map((video) => (
           <div key={video.id} className="trailer">
             <h4 className="video-name">{video.name}</h4>
@@ -265,7 +265,7 @@ const MovieDetails = () => {
       </div>
 
       {/* Recommended Movies Section */}
-      <div className="recommended-movies">
+      <div className="MovieDetails recommended-movies">
         <div className="heading">
           <h3>Recommended Movies</h3>
         </div>

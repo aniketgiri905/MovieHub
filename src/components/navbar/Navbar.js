@@ -75,7 +75,7 @@ const Navbar = ({
   };
 
   return (
-    <div className="navbar">
+    <div className="Navbar">
       <a href="/" className="logo-link">
         <img className="nav-logo" src={Logo} alt="logo" />
       </a>

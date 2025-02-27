@@ -37,7 +37,7 @@ const Banner = () => {
   }, [banner, totalMovies]);
 
   return (
-    <div className="banner">
+    <div className="Banner">
       <div
         className="banner-container"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}

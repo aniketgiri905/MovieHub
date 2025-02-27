@@ -5,12 +5,12 @@ import LeftArrow from "../SVG/LeftArrow";
 
 const Pagination = ({ pageForward, pageBackward, pageNumber }) => {
   return (
-    <div className="pagination">
-      <div className="pagination-item" onClick={pageBackward}>
+    <div className="Pagination">
+      <div className="Pagination-item" onClick={pageBackward}>
         <LeftArrow />
       </div>
-      <div className="pagiantion-count">{pageNumber}</div>
-      <div className="pagination-item" onClick={pageForward}>
+      <div className="Pagiantion-count">{pageNumber}</div>
+      <div className="Pagination-item" onClick={pageForward}>
         <RightArrow />
       </div>
     </div>
