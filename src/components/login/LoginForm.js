@@ -119,7 +119,7 @@ const LoginForm = ({
   };
 
   return (
-    <div className="auth-form-container">
+    <div className="LoginForm auth-form-container">
       <div className="tabs">
         <button
           className={`tab-button ${activeTab === "login" ? "active" : ""}`}

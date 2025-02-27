@@ -90,7 +90,7 @@ const Watchlist = ({
 
   return (
     <>
-      <div className="movies-categary">
+      <div className="Watchlist__movies-categary">
         <ul>
           {genreList.map((genre, index) => {
             if (genreList.indexOf(genre) === index) {
@@ -108,7 +108,7 @@ const Watchlist = ({
         </ul>
       </div>
 
-      <div className="watchlist-search">
+      <div className="Watchlist-search">
         <input
           onChange={(e) => handleSearch(e)}
           value={search}
@@ -119,13 +119,13 @@ const Watchlist = ({
 
       {/* Show a message if no movie matches search */}
       {filteredMovies.length === 0 && search !== "" && (
-        <div className="no-results-message">
+        <div className="Watchlist__no-results-message">
           No movies found matching "{search}"
         </div>
       )}
 
       {filteredMovies.length > 0 && (
-        <div className="watchlist-table">
+        <div className="Watchlist-table">
           <table>
             <thead>
               <tr>

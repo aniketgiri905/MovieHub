@@ -8,7 +8,7 @@ body {
 }
 
 /* Navbar */
-.navbar {
+.Navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;

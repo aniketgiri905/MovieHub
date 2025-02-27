@@ -28,7 +28,7 @@ const TopRatedMovies = ({
 
   return (
     <>
-      <div className="popular-movies">
+      <div className="TopRatedMovies popular-movies">
         {topRatedMovies.map((movieObj) => {
           return (
             <div className="moviecard-wrapper" key={movieObj.id}>

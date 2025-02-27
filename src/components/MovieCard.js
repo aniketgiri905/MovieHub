@@ -31,7 +31,7 @@ const MovieCard = ({
 
   return (
     <div
-      className="moviecard-items"
+      className="MovieCard moviecard-items"
       style={{
         backgroundImage: `url(https://image.tmdb.org/t/p/original/${poster_path})`,
       }}

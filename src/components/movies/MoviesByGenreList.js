@@ -37,8 +37,7 @@ const MoviesByGenreList = ({
   };
 
   return (
-    <div className="genre__movie-list">
-      {/* Display filtered popular movies */}
+    <div className="MoviesByGenre genre__movie-list">
       {filteredPopularMovies.length > 0 &&
         filteredPopularMovies.map((movie) => (
           <div key={movie.id} className="genre__movie-item">
