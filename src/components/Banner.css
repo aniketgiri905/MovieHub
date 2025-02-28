@@ -6,7 +6,7 @@ body {
 .Banner {
   display: flex;
   overflow: hidden;
-  height: 400px;
+  height: 450px;
   width: 100%;
   position: relative;
 }
@@ -18,9 +18,12 @@ body {
   object-fit: fill;
   /* flex-shrink: 0; */
 }
-
-.Banner-container:hover {
+.banner-container {
+  gap: 2px;
+}
+.banner-container:hover {
   animation-play-state: paused;
+  cursor: pointer;
 }
 
 @keyframes scrollBanner {
