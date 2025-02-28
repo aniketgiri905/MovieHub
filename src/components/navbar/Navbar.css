@@ -221,6 +221,7 @@ body {
   border: 2px solid;
   width: calc(40% - 12px);
   padding: 6px 10px;
+  cursor: pointer;
 }
 .navbar_genre-list .li-items li:hover {
   background-color: #4431f7;
