@@ -49,10 +49,6 @@ body {
 /* MovieCard CSS */
 .moviecard-items {
   position: relative;
-  background-image: url("../Logo/jokermovie.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   height: 280px;
   width: calc(16.67% - 17px); 
   border-radius: 15px;
@@ -60,6 +56,11 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
   margin-bottom: 20px;
+}
+.moviecard-items img {
+  object-fit: fill;
+  height: 280px;
+  width: 100%; 
 }
 
 .moviecard-items:hover {

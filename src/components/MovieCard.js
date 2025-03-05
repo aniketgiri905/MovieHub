@@ -18,7 +18,7 @@ const MovieCard = ({
     navigate(`/movie/${movieObj.id}`);
   };
 
-  const isInWatchlist = watchlist.some(item => item.id === movieObj.id);
+  const isInWatchlist = watchlist.some((item) => item.id === movieObj.id);
 
   const handleWatchlistButtonClick = (event) => {
     event.stopPropagation(); // Prevent click from triggering movie card navigation
@@ -32,16 +32,17 @@ const MovieCard = ({
   return (
     <div
       className="MovieCard moviecard-items"
-      style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/original/${poster_path})`,
-      }}
+      // style={{
+      //   backgroundImage: `url(https://image.tmdb.org/t/p/original/${poster_path})`,
+      // }}
       onClick={handleCardClick}
     >
+      <img
+        src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+        alt="movie-img"
+      />
       <div className="movie-title">{title}</div>
-      <button
-        className="watchlist-btn"
-        onClick={handleWatchlistButtonClick}
-      >
+      <button className="watchlist-btn" onClick={handleWatchlistButtonClick}>
         {isInWatchlist ? <CloseArrow /> : <AddToWatchList />}
       </button>
     </div>
