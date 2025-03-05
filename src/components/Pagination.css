@@ -20,3 +20,8 @@ body {
     font-weight: 600;
     margin: 0 12px;
 }
+
+/* dark theme */
+body.dark-mode .Pagination {
+    background-color: rgb(167 167 167); 
+}

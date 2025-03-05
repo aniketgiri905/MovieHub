@@ -2,11 +2,8 @@ import "./App.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {
-  BrowserRouter,
   Routes,
   Route,
-  Navigate,
-  useNavigate,
 } from "react-router-dom";
 import Movies from "./components/Movies";
 import Navbar from "./components/navbar/Navbar";
@@ -34,6 +31,7 @@ function App() {
     useState("login");
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [isForgotPassword, setIsForgotPassword] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     const loggedInUser = JSON.parse(localStorage.getItem("isUserLoggedIn"));
@@ -108,6 +106,8 @@ function App() {
           setUserNavigateToLoginSignup={setUserNavigateToLoginSignup}
           isUserLoggedIn={isUserLoggedIn}
           setIsUserLoggedIn={setIsUserLoggedIn}
+          isDarkMode={isDarkMode}
+          setIsDarkMode={setIsDarkMode}
         />
 
         <Routes>

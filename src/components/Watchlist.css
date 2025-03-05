@@ -130,3 +130,11 @@ body {
   color: #888;
   margin-top: 20px;
 }
+
+body.dark-mode .Watchlist-table table thead th {
+  color: #fff;
+}
+body.dark-mode .Watchlist-search input {
+  color: #000;
+  background-color: #d5d5d5;
+}
