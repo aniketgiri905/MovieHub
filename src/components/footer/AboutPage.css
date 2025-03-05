@@ -49,3 +49,12 @@
     margin-bottom: 8px;
   }
   
+  /* dark theme */
+  body.dark-mode .about-header h1,
+  body.dark-mode .about-section h2 {
+    color: #fff;
+  }
+  body.dark-mode .about-section p,
+  body.dark-mode .about-section ul li {
+    color: #d1d1d1;
+  }

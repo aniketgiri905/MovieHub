@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../../Logo/camlogo.jpg";
 import "./Navbar.css";
 import Hanburger from "../../SVG/Hanburger";
@@ -6,6 +6,8 @@ import genreids from "../../Utility/genre.js";
 import BlueDownArrow from "../../SVG/BlueDownArrow.js";
 import BlueUpArrow from "../../SVG/BlueUpArrow.js";
 import { useNavigate } from "react-router";
+import FullMoon from "../../SVG/FullMoon.js";
+import Sun from "../../SVG/Sun.js";
 
 const Navbar = ({
   setSearchMovie,
@@ -13,10 +15,37 @@ const Navbar = ({
   setUserNavigateToLoginSignup,
   isUserLoggedIn,
   setIsUserLoggedIn,
+  isDarkMode,
+  setIsDarkMode,
 }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [genreList, setGenreList] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("themeMode");
+    if (savedTheme === "dark") {
+      setIsDarkMode(true);
+      document.body.classList.add("dark-mode");
+    } else {
+      setIsDarkMode(false);
+      document.body.classList.remove("dark-mode");
+    }
+  }, []);
+
+  // Toggle theme mode and update localStorage
+  const toggleTheme = () => {
+    const newThemeMode = !isDarkMode ? "dark" : "light";
+    setIsDarkMode(!isDarkMode);
+
+    if (newThemeMode === "dark") {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+
+    localStorage.setItem("themeMode", newThemeMode);
+  };
 
   const handleMovieSearch = (e) => {
     setSearchMovie(e.target.value);
@@ -35,6 +64,7 @@ const Navbar = ({
     setIsSidebarOpen(false);
     document.body.classList.remove("sidebar-open");
   };
+
   const handleGenreList = () => {
     setGenreList(!genreList);
   };
@@ -51,6 +81,7 @@ const Navbar = ({
     setUserNavigateToLoginSignup("login");
     navigate(`/login`);
   };
+
   const handleUserSignup = () => {
     setIsSidebarOpen(false);
     setUserNavigateToLoginSignup("signup");
@@ -67,7 +98,7 @@ const Navbar = ({
   const handleWatchListClick = () => {
     if (!isUserLoggedIn) {
       setUserNavigateToLoginSignup("login");
-      localStorage.setItem("redirectTo", "/watchlist");  
+      localStorage.setItem("redirectTo", "/watchlist");
       navigate(`/login`);
     } else {
       navigate(`/watchlist`);
@@ -93,13 +124,20 @@ const Navbar = ({
           WatchList
         </a>
 
+        {/* Toggle Switch for Theme (Sun/Moon Icons) */}
+        <label className="switch">
+          <input type="checkbox" checked={isDarkMode} onChange={toggleTheme} />
+          <span className="slider round">
+            {isDarkMode ? <FullMoon /> : <Sun />}
+          </span>
+        </label>
+
         <div onClick={toggleSidebar} className="hamburger">
           <Hanburger />
         </div>
       </div>
 
       {/* Sidebar Menu */}
-
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <div className="sidebar-close" onClick={closeSidebar}>
           <span>&times;</span>
