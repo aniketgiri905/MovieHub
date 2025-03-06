@@ -232,6 +232,9 @@ function App() {
                 selectedGenreId={selectedGenreId}
                 pageNo={pageNo}
                 setPageNo={setPageNo}
+                watchlist={watchlist}
+                handleAddtoWatchlist={handleAddtoWatchlist}
+                handleRemoveFromWatchlist={handleRemoveFromWatchlist}
               />
             }
           />
