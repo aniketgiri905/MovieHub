@@ -165,6 +165,7 @@ function App() {
         <Navbar
           setSearchMovie={setSearchMovie}
           searchMovie={searchMovie}
+          selectedGenreId={selectedGenreId}
           setSelectedGenreId={setSelectedGenreId}
           setUserNavigateToLoginSignup={setUserNavigateToLoginSignup}
           isUserLoggedIn={isUserLoggedIn}
@@ -223,7 +224,7 @@ function App() {
 
           {/* Movies by Genre */}
           <Route
-            path="/genre/:id"
+            path="/genre/:genre"
             element={
               <MoviesByGenreList
                 popularMovies={popularMovies}

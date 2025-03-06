@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./MoviesByGenreList.css";
 import Pagination from "../Pagination";
+import { useNavigate } from "react-router";
 
 const MoviesByGenreList = ({
   popularMovies,
@@ -12,6 +13,7 @@ const MoviesByGenreList = ({
   const [filteredPopularMovies, setFilteredPopularMovies] = useState([]);
   const [filteredTopRatedMovies, setFilteredTopRatedMovies] = useState([]);
   const [currentMovies, setCurrentMovies] = useState([]);
+  const navigate = useNavigate();
 
   const moviesPerPage = 20;
 
@@ -70,6 +72,10 @@ const MoviesByGenreList = ({
     });
   };
 
+  const handleMovieCardClick = (id) => {
+    navigate(`/movie/${id}`);
+  }
+
   const pageForward = () => {
     setPageNo((prev) => prev + 1);
   };
@@ -88,7 +94,11 @@ const MoviesByGenreList = ({
         {/* Display filtered popular movies */}
         {currentMovies.length > 0 &&
           currentMovies.map((movie) => (
-            <div key={movie.id} className="genre__movie-item">
+            <div
+              key={movie.id}
+              className="genre__movie-item"
+              onClick={() => handleMovieCardClick(movie.id)} 
+            >
               {movie.poster_path ? (
                 <img
                   src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}

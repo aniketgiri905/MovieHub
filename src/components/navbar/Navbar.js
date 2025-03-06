@@ -5,12 +5,13 @@ import Hanburger from "../../SVG/Hanburger";
 import genreids from "../../Utility/genre.js";
 import BlueDownArrow from "../../SVG/BlueDownArrow.js";
 import BlueUpArrow from "../../SVG/BlueUpArrow.js";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import FullMoon from "../../SVG/FullMoon.js";
 import Sun from "../../SVG/Sun.js";
 
 const Navbar = ({
   setSearchMovie,
+  selectedGenreId,
   setSelectedGenreId,
   setUserNavigateToLoginSignup,
   isUserLoggedIn,
@@ -21,6 +22,7 @@ const Navbar = ({
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [genreList, setGenreList] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("themeMode");
@@ -32,6 +34,19 @@ const Navbar = ({
       document.body.classList.remove("dark-mode");
     }
   }, []);
+
+  useEffect(() => {
+    const isGenrePage = location.pathname.startsWith("/genre/");
+    if (isGenrePage) {
+      const savedGenreId = localStorage.getItem("SelectedGenreId");
+      if (savedGenreId) {
+        setSelectedGenreId(savedGenreId);
+      }
+    } else {
+      setSelectedGenreId(null);
+    }
+  }, [location.pathname, setSelectedGenreId]);
+  
 
   // Toggle theme mode and update localStorage
   const toggleTheme = () => {
@@ -69,10 +84,10 @@ const Navbar = ({
     setGenreList(!genreList);
   };
 
-  const handleMoviesByGenre = (id) => {
+  const handleMoviesByGenre = (id, genre) => {
     setSelectedGenreId(id);
     localStorage.setItem("SelectedGenreId", id);
-    navigate(`genre/${id}`);
+    navigate(`genre/${genre}`);
     setIsSidebarOpen(false);
   };
 
@@ -160,15 +175,20 @@ const Navbar = ({
         <ul className="navbar_genre-list">
           <h4>
             Genre List{" "}
-            <span onClick={handleGenreList}>
+            <span onClick={handleGenreList} className="genre-list__act-btn">
               {genreList ? <BlueUpArrow /> : <BlueDownArrow />}
             </span>
           </h4>
           <div className="li-items">
             {genreList &&
               Object.entries(genreids).map(([id, genre]) => {
+                const isSelected = id === selectedGenreId;
                 return (
-                  <li key={id} onClick={() => handleMoviesByGenre(id)}>
+                  <li
+                    key={id}
+                    onClick={() => handleMoviesByGenre(id, genre)}
+                    className={isSelected ? "selected-genre" : ""}
+                  >
                     {genre}
                   </li>
                 );
