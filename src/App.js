@@ -32,6 +32,7 @@ function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [totalPages, setTotalPages] = useState();
 
   useEffect(() => {
     const loggedInUser = JSON.parse(localStorage.getItem("isUserLoggedIn"));
@@ -46,30 +47,92 @@ function App() {
     localStorage.setItem("isUserLoggedIn", JSON.stringify(status));
   };
 
-  // Fetch movies (popular and top-rated) from API
-  useEffect(() => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=1ac79c500b8c1cb82335bb8918cac0fb&language=en-US&page=${pageNo}`
-      )
-      .then(function (res) {
-        setPopularMovies(res.data.results);
-      })
-      .catch((error) => {
-        console.error("Error fetching popular movies:", error);
-      });
+   // Fetch all pages of movies (popular and top-rated) from API
+   useEffect(() => {
+    const fetchMovies = async () => {
+      const apiKey = "1ac79c500b8c1cb82335bb8918cac0fb"; // Your API key
+      const baseURL = "https://api.themoviedb.org/3/movie";
 
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=1ac79c500b8c1cb82335bb8918cac0fb&language=en-US&page=${pageNo}`
-      )
-      .then(function (res) {
-        setTopRatedMovies(res.data.results);
-      })
-      .catch((error) => {
-        console.error("Error fetching top rated movies:", error);
-      });
-  }, [pageNo]);
+      const fetchAllPages = async (category) => {
+        let allMoviesData = [];
+        try {
+          const firstPageResponse = await axios.get(`${baseURL}/${category}`, {
+            params: {
+              api_key: apiKey,
+              language: "en-US",
+              page: 1,
+            },
+          });
+          let totalPagesLength;
+          const totalPages = firstPageResponse.data.total_pages;
+          if(totalPages >= 50) {
+            totalPagesLength = 50;
+            setTotalPages(50);
+          }else {
+            setTotalPages(totalPages);
+          }
+
+          for (let page = 1; page <= totalPagesLength; page++) {
+            try {
+              const response = await axios.get(`${baseURL}/${category}`, {
+                params: {
+                  api_key: apiKey,
+                  language: "en-US",
+                  page: page,
+                },
+              });
+              allMoviesData = [...allMoviesData, ...response.data.results];
+            } catch (error) {
+              console.error(`Error fetching ${category} page ${page}:`, error);
+              break; // Optional: stop fetching if there's an error
+            }
+          }
+        } catch (error) {
+          console.error(`Error fetching first page for ${category}:`, error);
+        }
+        return allMoviesData;
+      };
+
+      try {
+        // Fetching popular movies
+        const popularMoviesData = await fetchAllPages("popular");
+        setPopularMovies(popularMoviesData);
+
+        // Fetching top-rated movies
+        const topRatedMoviesData = await fetchAllPages("top_rated");
+        setTopRatedMovies(topRatedMoviesData);
+      } catch (error) {
+        console.error("Error fetching movies:", error);
+      }
+    };
+
+    fetchMovies();
+  }, []);
+
+  // // Fetch movies (popular and top-rated) from API
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `https://api.themoviedb.org/3/movie/popular?api_key=1ac79c500b8c1cb82335bb8918cac0fb&language=en-US&page=${pageNo}`
+  //     )
+  //     .then(function (res) {
+  //       setPopularMovies(res.data.results);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching popular movies:", error);
+  //     });
+
+  //   axios
+  //     .get(
+  //       `https://api.themoviedb.org/3/movie/top_rated?api_key=1ac79c500b8c1cb82335bb8918cac0fb&language=en-US&page=${pageNo}`
+  //     )
+  //     .then(function (res) {
+  //       setTopRatedMovies(res.data.results);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching top rated movies:", error);
+  //     });
+  // }, [pageNo]);
 
   // Function to add a movie to the watchlist
   let handleAddtoWatchlist = (movieObj) => {
@@ -166,6 +229,8 @@ function App() {
                 popularMovies={popularMovies}
                 topRatedMovies={topRatedMovies}
                 selectedGenreId={selectedGenreId}
+                pageNo={pageNo}
+                setPageNo={setPageNo}
               />
             }
           />
@@ -181,6 +246,7 @@ function App() {
                 watchlist={watchlist}
                 pageNo={pageNo}
                 setPageNo={setPageNo}
+                totalPages={totalPages}
               />
             }
           />
@@ -196,6 +262,7 @@ function App() {
                 watchlist={watchlist}
                 pageNo={pageNo}
                 setPageNo={setPageNo}
+                totalPages={totalPages}
               />
             }
           />

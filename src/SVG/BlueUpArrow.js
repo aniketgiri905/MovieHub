@@ -13,9 +13,9 @@ const BlueUpArrow = () => {
         <path
           d="M0.999921 4L3.99998 1L7 4"
           stroke="#0087FA"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </>

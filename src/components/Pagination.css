@@ -14,14 +14,68 @@ body {
     margin-top: 40px;
 }
 
-.Pagination .Pagiantion-count {
+/* Pagination count style */
+.Pagination .Pagination-count {
     color: black;
     font-size: 20px;
     font-weight: 600;
     margin: 0 12px;
 }
 
-/* dark theme */
+/* Individual page item styles */
+.Pagination-item {
+    cursor: pointer;
+    padding: 10px 12px;
+    margin: 0 5px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+/* Hover effect for page items */
+.Pagination-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Active page item style */
+.Pagination-item.active {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Disabled state for pagination arrows */
+.Pagination-item[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* Pagination arrows styles */
+.Pagination-item:first-child,
+.Pagination-item:last-child {
+    font-size: 20px;
+}
+
+/* Dark theme styles for pagination */
 body.dark-mode .Pagination {
-    background-color: rgb(167 167 167); 
+    background-color: rgb(167 167 167);
+}
+
+/* Dark theme for active page */
+body.dark-mode .Pagination-item.active {
+    background-color: #0056b3;
+    color: white;
+}
+
+/* Dark theme for hovered page items */
+body.dark-mode .Pagination-item:hover {
+    background-color: #d1d1d1;
+}
+
+/* Dark theme for pagination arrows */
+body.dark-mode .Pagination-item:first-child,
+body.dark-mode .Pagination-item:last-child {
+    color: #fff;
 }

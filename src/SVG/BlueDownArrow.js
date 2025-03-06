@@ -13,9 +13,9 @@ const BlueDownArrow = () => {
         <path
           d="M0.999921 1L3.99998 4L7 1"
           stroke="#0087FA"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </>
