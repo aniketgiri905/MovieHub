@@ -13,20 +13,20 @@ const Hanburger = () => {
         <path
           d="M7.35059 12L19.3372 12"
           stroke="white"
-          stroke-width="1.5"
-          stroke-linecap="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
         />
         <path
           d="M4.66211 7.41406H19.3373"
           stroke="white"
-          stroke-width="1.5"
-          stroke-linecap="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
         />
         <path
           d="M12 16.5859L19.3368 16.5859"
           stroke="white"
-          stroke-width="1.5"
-          stroke-linecap="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
         />
       </svg>
     </>
