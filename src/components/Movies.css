@@ -3,9 +3,9 @@ body {
   font-size: 16px;
 }
 
-.movies-items {
+.Movies__movies-items {
   display: flex;
-  padding: 0 40px;
+  padding: 40px 40px 0 40px;
   flex-direction: column;
 }
 .movies-items__inner .movies-items__header {
@@ -19,11 +19,12 @@ body {
   margin: 25px 0 15px;
 }
 
-.movies-items .moviecard-wrapper {
+.Movies__movies-items .moviecard-wrapper {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   gap: 30px 20px;
+  margin-bottom: 20px;
 }
 
 /* No Movies Found Section */
@@ -46,4 +47,9 @@ body {
   font-size: 18px;
   color: #555;
   margin-top: 0;
+}
+
+/* dark theme */
+body.dark-mode .movies-items__inner .movies-items__header > h1 {
+  color: #fff;
 }

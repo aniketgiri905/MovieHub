@@ -2,8 +2,14 @@ import React, { useEffect, useState, useMemo } from "react";
 import "./MovieDetails.css";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
+import CloseArrow from "../SVG/CloseArrow";
+import AddToWatchList from "../SVG/AddToWatchList";
 
-const MovieDetails = () => {
+const MovieDetails = ({
+  handleAddtoWatchlist,
+  handleRemoveFromWatchlist,
+  watchlist,
+}) => {
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
   const [movieVideos, setMovieVideos] = useState([]);
@@ -78,7 +84,7 @@ const MovieDetails = () => {
 
   const handleCardClick = (id) => {
     navigate(`/movie/${id}`);
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   };
 
   // console.log("setUserReviews", userReviews);
@@ -100,13 +106,27 @@ const MovieDetails = () => {
     return movieVideos.slice(0, 3);
   }, [movieVideos]);
 
+  // watchlist
+  const handleWatchlistButtonClick = (event, movie) => {
+    event.stopPropagation(); // Prevent click from triggering movie card navigation
+
+    // Check if the current movie is in the watchlist
+    const isInWatchlist = watchlist.some((item) => item.id === movie.id);
+
+    if (isInWatchlist) {
+      handleRemoveFromWatchlist(movie);
+    } else {
+      handleAddtoWatchlist(movie);
+    }
+  };
+
   if (!movieDetails) {
     return <div>Loading...</div>;
   }
 
   return (
     <>
-      <div className="movie-details">
+      <div className="MovieDetails movie-details">
         <div className="header">
           <img
             src={`https://image.tmdb.org/t/p/original/${movieDetails.poster_path}`}
@@ -165,7 +185,7 @@ const MovieDetails = () => {
         </div>
       </div>
 
-      <div className="movie-cast">
+      <div className="MovieDetails movie-cast">
         <div className="heading">
           <h3>Cast</h3>
         </div>
@@ -184,7 +204,7 @@ const MovieDetails = () => {
         </div>
       </div>
 
-      <div className="movie-crew">
+      <div className="MovieDetails movie-crew">
         <div className="heading">
           <h3>Crew</h3>
         </div>
@@ -203,7 +223,7 @@ const MovieDetails = () => {
         </div>
       </div>
 
-      <div className="user-reviews">
+      <div className="MovieDetails user-reviews">
         <div className="heading">
           <h3>User Reviews</h3>
         </div>
@@ -230,7 +250,7 @@ const MovieDetails = () => {
                                 : ""
                             }`}
                           >
-                            &#9733; 
+                            &#9733;
                           </span>
                         ))}
                       </span>
@@ -248,7 +268,7 @@ const MovieDetails = () => {
         )}
       </div>
 
-      <div className="videos">
+      <div className="MovieDetails videos">
         {videosToDisplay.map((video) => (
           <div key={video.id} className="trailer">
             <h4 className="video-name">{video.name}</h4>
@@ -265,13 +285,17 @@ const MovieDetails = () => {
       </div>
 
       {/* Recommended Movies Section */}
-      <div className="recommended-movies">
+      <div className="MovieDetails recommended-movies">
         <div className="heading">
           <h3>Recommended Movies</h3>
         </div>
         <div className="recommended-movie-cards">
           {recommendedMovies.map((movie) => (
-            <div key={movie.id} className="recommended-movie-card" onClick={() => handleCardClick(movie.id)}>
+            <div
+              key={movie.id}
+              className="recommended-movie-card"
+              onClick={() => handleCardClick(movie.id)}
+            >
               {movie.poster_path && (
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -282,6 +306,16 @@ const MovieDetails = () => {
               <div className="recommended-movie-title">
                 <h4>{movie.title}</h4>
               </div>
+              <button
+                className="watchlist-btn"
+                onClick={(e) => handleWatchlistButtonClick(e, movie)}
+              >
+                {watchlist.some((item) => item.id === movie.id) ? (
+                  <CloseArrow />
+                ) : (
+                  <AddToWatchList />
+                )}
+              </button>
             </div>
           ))}
         </div>

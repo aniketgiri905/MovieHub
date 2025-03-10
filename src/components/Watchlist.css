@@ -3,12 +3,12 @@ body {
   font-size: 16px;
 }
 
-.movies-categary {
+.Watchlist__movies-categary {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.movies-categary ul {
+.Watchlist__movies-categary ul {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,10 +18,10 @@ body {
   margin: 40px 0 10px;
   width: 80%;
 }
-.movies-categary ul li.selected-genre {
+.Watchlist__movies-categary ul li.selected-genre {
   background-color: rgb(87, 163, 240);
 }
-.movies-categary ul li {
+.Watchlist__movies-categary ul li {
   font-size: 18px;
   font-weight: 600;
   background-color: rgb(165, 164, 164);
@@ -33,12 +33,12 @@ body {
   cursor: pointer;
 }
 
-.watchlist-search {
+.Watchlist-search {
   display: flex;
   justify-content: center;
   margin: 10px 0 40px;
 }
-.watchlist-search > input {
+.Watchlist-search > input {
   border: none;
   background-color: rgb(228, 226, 226);
   height: 30px;
@@ -48,32 +48,32 @@ body {
   border-radius: 6px;
 }
 
-.watchlist-table {
+.Watchlist-table {
   border: 1px solid gray;
   margin: 0 20px;
 }
-.watchlist-table table {
+.Watchlist-table table {
   width: 100%;
   text-align: center;
 }
 
-.watchlist-table table thead th {
+.Watchlist-table table thead th {
   color: rgb(40 39 39);
   font-weight: 700;
   width: 20%;
 }
-.watchlist-table table thead th:first-child {
+.Watchlist-table table thead th:first-child {
   width: 40%;
 }
-.watchlist-table table tbody tr td {
+.Watchlist-table table tbody tr td {
   padding: 10px;
 }
-.watchlist-table table tbody tr td:first-child {
+.Watchlist-table table tbody tr td:first-child {
   text-align: left;
   display: flex;
   align-items: center;
 }
-.watchlist-table table tbody tr td img {
+.Watchlist-table table tbody tr td img {
   height: 150px;
   width: 120px;
   margin-right: 16px;
@@ -81,21 +81,21 @@ body {
   flex: 0;
 }
 
-.watchlist-table .rating-items .rating,
-.watchlist-table .popularity-items .popularity {
+.Watchlist-table .rating-items .rating,
+.Watchlist-table .popularity-items .popularity {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.watchlist-table .rating-items .rating,
-.watchlist-table .popularity-items .popularity {
+.Watchlist-table .rating-items .rating,
+.Watchlist-table .popularity-items .popularity {
   margin: 0 4px;
 }
 
-.watchlist-table .rating-items .up-arrow,
-.watchlist-table .popularity-items .up-arrow,
-.watchlist-table .rating-items .down-arrow,
-.watchlist-table .popularity-items .down-arrow {
+.Watchlist-table .rating-items .up-arrow,
+.Watchlist-table .popularity-items .up-arrow,
+.Watchlist-table .rating-items .down-arrow,
+.Watchlist-table .popularity-items .down-arrow {
   cursor: pointer;
   transition: transform 0.3s ease, color 0.3s ease;
 }
@@ -124,9 +124,17 @@ body {
   transform: scale(0.98);
 }
 
-.no-results-message {
+.Watchlist__no-results-message {
   text-align: center;
   font-size: 1.2rem;
   color: #888;
   margin-top: 20px;
+}
+
+body.dark-mode .Watchlist-table table thead th {
+  color: #fff;
+}
+body.dark-mode .Watchlist-search input {
+  color: #000;
+  background-color: #d5d5d5;
 }

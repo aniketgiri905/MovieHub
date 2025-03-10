@@ -49,10 +49,6 @@ body {
 /* MovieCard CSS */
 .moviecard-items {
   position: relative;
-  background-image: url("../Logo/jokermovie.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   height: 280px;
   width: calc(16.67% - 17px); 
   border-radius: 15px;
@@ -60,6 +56,11 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
   margin-bottom: 20px;
+}
+.moviecard-items img {
+  object-fit: fill;
+  height: 280px;
+  width: 100%; 
 }
 
 .moviecard-items:hover {
@@ -81,7 +82,7 @@ body {
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 1px;
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 15px 15px;
 }
 
 .watchlist-btn {
@@ -92,17 +93,28 @@ body {
   right: 10px;
   top: 10px;
   padding: 6px;
-  background-color: rgba(0, 0, 0, 0.6); /* Slight background color */
+  background-color: rgba(0, 0, 0, 0.6); 
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .watchlist-btn:hover {
-  background-color: rgba(0, 0, 0, 0.8); /* Darker on hover */
+  background-color: rgba(0, 0, 0, 0.8); 
 }
 
 
 .moviecard-items:hover .popup-message {
-  display: block; /* Show popup on hover */
+  display: block; 
+}
+
+/* dark theme */
+body.dark-mode .watchlist-btn {
+  background-color: rgb(255 230 230 / 65%);
+}
+body.dark-mode .watchlist-btn:hover {
+  background-color: #fff;
+}
+body.dark-mode .moviecard-items {
+ box-shadow: 0 4px 10px rgb(255 255 255 / 55%);
 }

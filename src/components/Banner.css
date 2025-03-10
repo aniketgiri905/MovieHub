@@ -3,24 +3,27 @@ body {
   font-size: 16px;
 }
 
-.banner {
+.Banner {
   display: flex;
   overflow: hidden;
-  height: 400px;
+  height: 450px;
   width: 100%;
   position: relative;
 }
 
-.banner img {
+.Banner img {
   height: 100%;
   width: 100%;
   min-width: 350px;
   object-fit: fill;
   /* flex-shrink: 0; */
 }
-
+.banner-container {
+  gap: 2px;
+}
 .banner-container:hover {
   animation-play-state: paused;
+  cursor: pointer;
 }
 
 @keyframes scrollBanner {

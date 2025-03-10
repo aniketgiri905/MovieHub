@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Movies.css";
 import MovieCard from "./MovieCard";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
-import Pagination from "./Pagination";
+import { Link } from "react-router-dom"; 
 
 const Movies = ({
   handleAddtoWatchlist,
@@ -28,7 +27,7 @@ const Movies = ({
     filteredPopularMovies.length === 0 && filteredTopRatedMovies.length === 0;
 
   return (
-    <div className="movies-items">
+    <div className="Movies__movies-items">
       {/* Popular Movies Section */}
       {filteredPopularMovies.length > 0 && (
         <div className="movies-items__inner">

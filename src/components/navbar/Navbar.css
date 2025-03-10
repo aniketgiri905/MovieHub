@@ -7,14 +7,97 @@ body {
   background-color: #f5f5f5;
 }
 
+/* theme/mode */
+body.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+body.dark-mode input {
+  color: #fff;
+  background-color: #444;
+}
+
+body.dark-mode .Navbar {
+  background: linear-gradient(45deg, #3a3a3a, #c18a39);
+}
+
+/* Slider style for Sun and Moon toggle */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px; /* Make the slider rounded */
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%; /* Ensure the circle inside is round */
+}
+
+input:checked + .slider {
+  background-color: #4d4d4e;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Adding Sun and Moon Icons */
+.slider svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease;
+}
+
+.slider input:checked + .slider svg.feather-sun {
+  transform: translate(-50%, -50%) translateX(26px);
+}
+
+.slider input:checked + .slider svg.feather-moon {
+  transform: translate(-50%, -50%) translateX(-26px);
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* end css for theme */
+
 /* Navbar */
-.navbar {
+.Navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 30px;
   background: linear-gradient(45deg, #9c27b0, #ff9800);
-  border-bottom: 2px solid #ff5722;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   position: sticky;
@@ -110,52 +193,31 @@ body {
 
 /* Sidebar styles */
 .sidebar {
-    position: fixed;
-    overflow: auto;
-    top: 0;
-    right: 0;
-    width: 320px;
-    height: 100%;
-    background-color: #2b2a2aaf;
-    color: #fff;
-    font-weight: 700;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 50px;
-    transition: transform 0.5s ease-in-out;
-    transform: translateX(320px); /* Corrected the translate syntax */
-    z-index: 99;
-  }
-  .sidebar::-webkit-scrollbar {
-    display: none;
-  }
-  
-  /* .sidebar::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.65);
-    opacity: 0;
-    visibility: hidden;
-    z-index: -1;
-    transition: all 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  } */
-  
-  .sidebar.open {
-    transform: translateX(0); /* Make the sidebar visible */
-  }
-  
-  /* .sidebar.open::after {
-    opacity: 1;
-    visibility: visible;
-    z-index: 5;
-    transition: all 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  } */
-  
+  position: fixed;
+  overflow: auto;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100%;
+  background-color: #2b2a2aaf;
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 50px;
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(320px);
+  z-index: 99;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
 
 /* Sidebar Menu Items */
 .sidebar .sidebar-tabs {
@@ -201,19 +263,23 @@ body {
   justify-content: space-between;
   padding: 0 14px;
 }
+
 .navbar_genre-list {
   list-style: none;
   padding: 0;
-  /* margin: 0 0 40px 0; */
 }
+.genre-list__act-btn {
+  cursor: pointer;
+}
+
 .navbar_genre-list .li-items {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin: 0 14px;
   width: 100%;
-
 }
+
 .navbar_genre-list .li-items li {
   font-size: 16px;
   font-weight: 600;
@@ -221,10 +287,17 @@ body {
   border: 2px solid;
   width: calc(40% - 12px);
   padding: 6px 10px;
+  cursor: pointer;
 }
+
 .navbar_genre-list .li-items li:hover {
   background-color: #4431f7;
   color: #fff;
+}
+
+.selected-genre {
+  background-color: blue;
+  color: #fff !important;
 }
 
 /* log-in */
@@ -234,6 +307,7 @@ body {
   width: 100%;
   margin: 40px 12px;
 }
+
 .loggedin-section .tabs {
   display: flex;
   align-items: center;

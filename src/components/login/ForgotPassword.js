@@ -54,7 +54,7 @@ const ForgotPassword = ({ setIsForgotPassword }) => {
   };
 
   return (
-    <div className="forgot-password-container">
+    <div className="ForgotPassword forgot-password-container">
       <h2>Forgot Password</h2>
       <form onSubmit={handleSubmit}>
         <input

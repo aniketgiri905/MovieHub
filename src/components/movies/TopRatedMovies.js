@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MovieCard from "../MovieCard";
 import Pagination from "../Pagination";
 
@@ -9,10 +9,25 @@ const TopRatedMovies = ({
   watchlist,
   pageNo,
   setPageNo,
+  totalPages,
 }) => {
+  const [currentMovies, setCurrentMovies] = useState([]);
+  const moviesPerPage = 20;
+
+  // Effect to update the current movies when pageNo changes
   useEffect(() => {
     window.scroll(0, 0);
-  }, []);
+    updateCurrentMovies(topRatedMovies);
+  }, [pageNo, topRatedMovies]);
+
+  const updateCurrentMovies = (movies) => {
+    // Slice the topRatedMovies array to display only 20 movies per page
+    const indexOfLastMovie = pageNo * moviesPerPage;
+    const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
+
+    const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
+    setCurrentMovies(currentMovies);
+  };
 
   function pageForward() {
     setPageNo((prev) => prev + 1);
@@ -23,13 +38,13 @@ const TopRatedMovies = ({
   }
 
   if (!topRatedMovies || topRatedMovies.length === 0) {
-    return <div>Loading popular movies...</div>;
+    return <div>Loading top-rated movies...</div>;
   }
 
   return (
     <>
-      <div className="popular-movies">
-        {topRatedMovies.map((movieObj) => {
+      <div className="TopRatedMovies popular-movies">
+        {currentMovies.map((movieObj) => {
           return (
             <div className="moviecard-wrapper" key={movieObj.id}>
               <MovieCard
@@ -49,6 +64,8 @@ const TopRatedMovies = ({
         pageForward={pageForward}
         pageBackward={pageBackward}
         pageNumber={pageNo}
+        totalPages={totalPages}
+        setPageNo={setPageNo}
       />
     </>
   );
