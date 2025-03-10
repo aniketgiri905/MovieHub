@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/MovieHub/static/css/main.a8cdded6.css",
-    "main.js": "/MovieHub/static/js/main.9da60eed.js",
-    "static/js/488.e9af7d7b.chunk.js": "/MovieHub/static/js/488.e9af7d7b.chunk.js",
-    "static/media/camlogo.jpg": "/MovieHub/static/media/camlogo.ffb945b1d5fdf1195a76.jpg",
-    "index.html": "/MovieHub/index.html",
-    "main.a8cdded6.css.map": "/MovieHub/static/css/main.a8cdded6.css.map",
-    "main.9da60eed.js.map": "/MovieHub/static/js/main.9da60eed.js.map",
-    "488.e9af7d7b.chunk.js.map": "/MovieHub/static/js/488.e9af7d7b.chunk.js.map"
+    "main.css": "/static/css/main.a8cdded6.css",
+    "main.js": "/static/js/main.5950340f.js",
+    "static/js/488.e9af7d7b.chunk.js": "/static/js/488.e9af7d7b.chunk.js",
+    "static/media/camlogo.jpg": "/static/media/camlogo.ffb945b1d5fdf1195a76.jpg",
+    "index.html": "/index.html",
+    "main.a8cdded6.css.map": "/static/css/main.a8cdded6.css.map",
+    "main.5950340f.js.map": "/static/js/main.5950340f.js.map",
+    "488.e9af7d7b.chunk.js.map": "/static/js/488.e9af7d7b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a8cdded6.css",
-    "static/js/main.9da60eed.js"
+    "static/js/main.5950340f.js"
   ]
 }
