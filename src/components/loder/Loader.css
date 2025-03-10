@@ -1,0 +1,14 @@
+/* Loader3D.css */
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;  /* Make the loader take full height */
+    background-color: #f0f0f0; /* You can change this to any background color */
+  }
+  
+  .loader-gif {
+    width: 100px;  /* Adjust the size of the gif */
+    height: 100px;  /* Adjust the size of the gif */
+  }
+  

@@ -21,7 +21,7 @@
   width: 100%;
   height: 300px;
   object-fit: fill;
-  /* border-bottom: 1px solid #ccc; */
+  cursor: pointer;
 }
 
 .genre__movie-item h3 {
@@ -41,6 +41,11 @@
 .genre__movie-item:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.genre__movie-item .moviecard-items {
+  width: 100%;
+  margin-bottom: 0;
 }
 
 .no-image {

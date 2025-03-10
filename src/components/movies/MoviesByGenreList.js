@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./MoviesByGenreList.css";
 import Pagination from "../Pagination";
+import MovieCard from "../MovieCard"; // Import the MovieCard component
+import { useNavigate } from "react-router";
 
 const MoviesByGenreList = ({
   popularMovies,
@@ -8,10 +10,14 @@ const MoviesByGenreList = ({
   selectedGenreId,
   pageNo,
   setPageNo,
+  watchlist,
+  handleAddtoWatchlist,
+                handleRemoveFromWatchlist,
 }) => {
   const [filteredPopularMovies, setFilteredPopularMovies] = useState([]);
   const [filteredTopRatedMovies, setFilteredTopRatedMovies] = useState([]);
   const [currentMovies, setCurrentMovies] = useState([]);
+  const navigate = useNavigate();
 
   const moviesPerPage = 20;
 
@@ -85,23 +91,20 @@ const MoviesByGenreList = ({
   return (
     <>
       <div className="MoviesByGenre genre__movie-list">
-        {/* Display filtered popular movies */}
+        {/* Display filtered popular movies using MovieCard */}
         {currentMovies.length > 0 &&
           currentMovies.map((movie) => (
             <div key={movie.id} className="genre__movie-item">
-              {movie.poster_path ? (
-                <img
-                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-                  alt={movie.title}
-                />
-              ) : (
-                <div>No image available</div>
-              )}
-              <h3>{movie.title}</h3>
+              <MovieCard
+                poster_path={movie.poster_path}
+                title={movie.title}
+                movieObj={movie}
+                handleAddtoWatchlist={handleAddtoWatchlist}
+                handleRemoveFromWatchlist={handleRemoveFromWatchlist}
+                watchlist={watchlist}
+              />
             </div>
           ))}
-
-        {/* Pagination */}
 
         {/* If no filtered movies, display message */}
         {filteredPopularMovies.length === 0 &&
