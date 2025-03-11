@@ -380,7 +380,6 @@ iframe {
 
 /* General Styles for Reviews Section */
 .user-reviews {
-  margin-top: 40px;
   padding: 20px;
   background-color: #f8f8f8;
   border-radius: 8px;
@@ -406,7 +405,7 @@ iframe {
   gap: 20px;
 }
 .review-card {
-  width: 46%;
+  width: calc(47% - 17px);
   background-color: #fff;
   border: 1px solid #ddd;
   padding: 15px 20px;
@@ -498,7 +497,7 @@ body.dark-mode .movie-details .header-details h1,
 body.dark-mode .movie-details .header-details > p,
 body.dark-mode .info-value,
 body.dark-mode .star-rating h3,
-body.dark-mode .movie-cast .heading > h3, 
+body.dark-mode .movie-cast .heading > h3,
 body.dark-mode .movie-crew .heading > h3,
 body.dark-mode .user-reviews h3,
 body.dark-mode .author-details h4,
@@ -525,4 +524,364 @@ body.dark-mode .star-rating p {
 }
 body.dark-mode .recommended-movie-cards .watchlist-btn:hover {
   background-color: #fff;
+}
+
+/* For screens smaller than 1220px */
+@media (max-width: 1220px) {
+  .movie-details .header-details h1 {
+    font-size: 28px;
+    line-height: 45px;
+  }
+  .movie-details .header-details h1 .tagline {
+    font-size: 12px;
+  }
+  .header-details .genre-list ul li {
+    font-size: 12px;
+  }
+  .movie-details .header-details > p {
+    font-size: 14px;
+    line-height: 21px;
+    margin-top: 10px;
+  }
+  .movie-info p {
+    font-size: 14px;
+  }
+  .stars {
+    margin-top: 4px;
+  }
+  .star-rating p {
+    font-size: 15px;
+    margin: 8px 0;
+  }
+
+  .movie-details .header img {
+    height: 360px;
+    width: 100%;
+    max-width: 300px;
+  }
+  .movie-details {
+    padding: 25px;
+  }
+
+  .movie-cast img,
+  .movie-crew img {
+    width: 130px;
+    height: 180px;
+  }
+
+  .author-avatar {
+    width: 45px;
+    height: 45px;
+  }
+  .review-card {
+    width: calc(47% - 15px);
+    padding: 12px 15px;
+  }
+  .author-details h4 {
+    font-size: 16px;
+  }
+  .content-text {
+    font-size: 12px;
+  }
+
+  iframe {
+    height: 260px;
+  }
+  .videos {
+    margin-top: 30px;
+    padding: 10px 30px;
+  }
+
+  .recommended-movies {
+    margin-top: 30px;
+  }
+  .recommended-movie-image {
+    height: 200px;
+  }
+  .recommended-movie-title h4 {
+    margin: 8px 0 0;
+  }
+}
+
+/* For screens smaller than 991px */
+@media (max-width: 991px) {
+  .movie-details {
+    margin: 30px;
+    padding: 20px 15px;
+  }
+  .movie-details .header {
+    gap: 25px;
+  }
+  .movie-details .header img {
+    margin-right: 0;
+  }
+
+  .movie-details .header-details h1 {
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    line-height: 28px;
+  }
+  .movie-details .header-details h1 .tagline {
+    display: flex;
+    margin-left: 0;
+  }
+
+  .header-details .genre-list ul li {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+  .movie-details .header-details > p {
+    font-size: 12px;
+    line-height: 17px;
+    margin: 8px 0 10px;
+  }
+  .movie-info {
+    margin-top: 15px;
+  }
+  .movie-info p {
+    font-size: 13px;
+  }
+  .star-rating h3 {
+    margin: 0;
+    font-size: 14px;
+  }
+  .star-rating p {
+    font-size: 13px;
+    margin: 6px 0;
+  }
+
+  .movie-cast .heading > h3,
+  .movie-crew .heading > h3 {
+    font-size: 22px;
+    margin: 0 0 6px;
+  }
+  .movie-cast img,
+  .movie-crew img {
+    width: 105px;
+    height: 140px;
+  }
+  .movie-cast .cast-profile,
+  .movie-crew .crew-profile {
+    gap: 12px;
+  }
+  .movie-crew,
+  .movie-cast {
+    margin: 30px 0;
+  }
+
+  .user-reviews h3 {
+    font-size: 22px;
+    margin: 0 0 6px;
+  }
+  .reviews-list {
+    gap: 15px;
+  }
+
+  .review-card {
+    width: 45%;
+    padding: 10px 12px;
+  }
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  .author-details h4 {
+    font-size: 15px;
+  }
+  .review-rating .star-rating .star {
+    font-size: 18px;
+  }
+  .videos {
+    margin-top: 20px;
+    padding: 10px 20px;
+  }
+  .video-name {
+    min-height: 30px;
+    font-size: 12px;
+  }
+  iframe {
+    height: 240px;
+  }
+
+  .recommended-movies .heading h3 {
+    font-size: 22px;
+    letter-spacing: normal;
+    margin: 0 0 4px;
+  }
+  .heading {
+    margin-bottom: 12px;
+  }
+  .recommended-movie-image {
+    height: 180px;
+  }
+  .recommended-movie-card {
+    width: 140px;
+  }
+  .recommended-movie-cards {
+    gap: 15px;
+  }
+}
+
+/* For screens smaller than 767px */
+@media (max-width: 767px) {
+  .movie-details .header img {
+    height: 260px;
+    width: 100%;
+    max-width: 200px;
+  }
+  .movie-details .header {
+    gap: 15px;
+  }
+  .movie-details {
+    margin: 30px 15px;
+    padding: 15px 10px;
+  }
+  .movie-details .header-details h1 {
+    font-size: 22px;
+    line-height: 27px;
+  }
+  .header-details .genre-list ul {
+    gap: 6px;
+    margin: 8px 0 12px;
+  }
+  .movie-info p {
+    font-size: 12px;
+  }
+  .star {
+    font-size: 24px;
+  }
+  .star-rating p {
+    font-size: 12px;
+  }
+
+  .movie-cast .heading > h3,
+  .movie-crew .heading > h3,
+  .user-reviews h3,
+  .recommended-movies .heading h3 {
+    font-size: 20px;
+    margin: 0;
+  }
+  .movie-cast img,
+  .movie-crew img {
+    width: 80px;
+    height: 115px;
+  }
+  .movie-cast .cast-profile,
+  .movie-crew .crew-profile {
+    gap: 10px;
+  }
+  .reviews-list {
+    gap: 15px 10px;
+  }
+  .review-card {
+    width: 100%;
+  }
+  .review-rating .star-rating .star {
+    font-size: 20px;
+  }
+  iframe {
+    height: 200px;
+  }
+
+  .recommended-movies {
+    margin-top: 20px;
+  }
+  .recommended-movie-title h4 {
+    font-size: 15px;
+  }
+  .recommended-movie-cards .watchlist-btn {
+    font-size: 22px;
+  }
+  .recommended-movie-card {
+    padding: 10px 6px;
+    width: 125px;
+  }
+}
+
+/* For screens smaller than 575px */
+@media (max-width: 575px) {
+  .movie-details .header img {
+    max-width: initial;
+    border-radius: 6px;
+    height: 220px;
+    gap: 10px;
+  }
+  .movie-details .header-details h1 .tagline {
+    line-height: 18px;
+  }
+  .movie-details .header-details h1 {
+    font-size: 20px;
+  }
+
+  .movie-cast img,
+  .movie-crew img {
+    width: calc(33.33% - 7px);
+    height: 110px;
+  }
+
+  .movie-cast .heading > h3,
+  .movie-crew .heading > h3,
+  .user-reviews h3,
+  .recommended-movies .heading h3 {
+    font-size: 18px;
+  }
+  .user-reviews .heading {
+    margin-bottom: 15px;
+  }
+
+  .author-avatar {
+    width: 35px;
+    height: 35px;
+    margin-right: 8px;
+  }
+  .review-card {
+    padding: 10px;
+  }
+
+  .videos {
+    display: flex;
+    overflow-x: auto;
+    width: 100%;
+  }
+  .videos::-webkit-scrollbar {
+    display: none;
+  }
+  .trailer {
+    width: 100%;
+  }
+  iframe {
+    width: 100%;
+    min-width: 260px;
+  }
+
+  .recommended-movie-title h4 {
+    font-size: 13px;
+  }
+  .recommended-movie-cards {
+    gap: 10px;
+  }
+  .recommended-movie-card {
+    padding: 8px 0;
+    width: 90px;
+  }
+  .recommended-movie-image {
+    height: 150px;
+  }
+  .recommended-movie-cards .watchlist-btn {
+    font-size: 12px;
+    right: 6px;
+    padding: 4px;
+  }
+  .recommended-movie-cards .watchlist-btn svg {
+    height: 16px;
+    width: 16px;
+  }
+
+  .movie-crew, .movie-cast,
+  .user-reviews,
+  .recommended-movies {
+    border-radius: 0;
+  }
 }

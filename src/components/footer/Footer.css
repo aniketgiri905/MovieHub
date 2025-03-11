@@ -18,19 +18,16 @@ body {
 
 .footer-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.footer-left,
-.footer-center,
-.footer-right {
-  margin-bottom: 20px;
+.footer-left {
+  display: flex;
+  width: 45%;
 }
-
 .footer-left p {
   font-size: 14px;
   color: #bbb;
@@ -56,6 +53,13 @@ body {
 
 .footer-center .footer-links li a:hover {
   color: #ff5722;
+}
+
+.footer-item_wrapper {
+  display: flex;
+  align-items: center;
+  width: 55%;
+  justify-content: space-between;
 }
 
 .footer-right .social-links {
@@ -92,15 +96,86 @@ body.dark-mode .footer-right .social-links li a:hover {
   color: #ff5722;
 }
 
-@media (min-width: 768px) {
+/* responsive 1220px */
+@media only screen and (max-width: 1220px) {
   .footer-container {
-    flex-direction: row;
-    justify-content: space-between;
+    max-width: initial;
+  }
+  .footer {
+    padding: 10px 20px;
+  }
+  .footer-center .footer-links li {
+    font-size: 15px;
+  }
+  .footer-right .social-links li a {
+    font-size: 22px;
   }
 
-  .footer-left,
-  .footer-center,
-  .footer-right {
-    margin-bottom: 0;
+  .footer-left {
+    width: 42%;
+  }
+  .footer-item_wrapper {
+    width: 58%;
+  }
+}
+
+/* responsive 991px */
+@media only screen and (max-width: 991px) {
+  .footer-left p {
+    font-size: 12px;
+  }
+  .footer-center .footer-links li {
+    font-size: 12px;
+  }
+  .footer-right .social-links li a {
+    font-size: 20px;
+  }
+
+  .footer-left {
+    width: 40%;
+  }
+  .footer-item_wrapper {
+    width: 60%;
+  }
+}
+
+/* responsive 767px */
+@media only screen and (max-width: 767px) {
+  .footer-left p {
+    margin: 10px 0 0;
+  }
+  .footer-center .footer-links,
+  .footer-right .social-links {
+    gap: 12px;
+  }
+  .footer-right .social-links li a {
+    font-size: 18px;
+  }
+
+  .footer-container {
+    flex-direction: column-reverse;
+  }
+  .footer-left {
+    width: 100%;
+    justify-content: center;
+  }
+  .footer-item_wrapper {
+    width: 100%;
+  }
+}
+
+/* responsive 575px */
+@media only screen and (max-width: 575px) {
+  .footer-left p,
+  .footer-center .footer-links li {
+    font-size: 11px;
+  }
+
+  .footer {
+    padding: 10px 15px;
+  }
+  .footer-center .footer-links,
+  .footer-right .social-links {
+    gap: 10px;
   }
 }
