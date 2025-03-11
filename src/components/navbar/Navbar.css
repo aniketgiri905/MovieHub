@@ -194,7 +194,7 @@ input:checked + .slider:before {
 /* Sidebar styles */
 .sidebar {
   position: fixed;
-  overflow: auto;
+  overflow-y: auto;
   top: 0;
   right: 0;
   width: 320px;
@@ -261,13 +261,15 @@ input:checked + .slider:before {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 14px;
+  padding: 15px 14px;
   font-size: 18px;
+  margin: 0;
 }
 
 .navbar_genre-list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 .genre-list__act-btn {
   cursor: pointer;
@@ -278,7 +280,7 @@ input:checked + .slider:before {
   flex-wrap: wrap;
   gap: 10px;
   margin: 0 14px;
-  width: 100%;
+  width: calc(100% - 30px);
 }
 
 .navbar_genre-list .li-items li {
@@ -286,7 +288,7 @@ input:checked + .slider:before {
   font-weight: 600;
   color: #a5a1a1;
   border: 2px solid;
-  width: calc(40% - 12px);
+  width: calc(50% - 30px);
   padding: 6px 10px;
   cursor: pointer;
 }
@@ -305,7 +307,7 @@ input:checked + .slider:before {
 .loggedin-section {
   display: flex;
   gap: 20px;
-  width: 100%;
+  width: calc(100% - 24px);
   margin: 40px 12px;
 }
 
@@ -314,7 +316,7 @@ input:checked + .slider:before {
   align-items: center;
   justify-content: center;
   background-color: #370df0;
-  width: calc(50% - 20px);
+  width: calc(50% - 10px);
   padding: 6px 10px;
   border-radius: 5px;
   cursor: pointer;
@@ -324,7 +326,6 @@ input:checked + .slider:before {
 .sidebar .sidebar-tabs li.res-navbar-item {
   display: none;
 }
-
 
 /* responsive 1220px */
 @media only screen and (max-width: 1220px) {
@@ -383,6 +384,14 @@ input:checked + .slider:before {
   input:checked + .slider:before {
     transform: translateX(21px);
   }
+
+  .sidebar .sidebar-tabs li a,
+  .navbar_genre-list h4 {
+    font-size: 16px;
+  }
+  .navbar_genre-list .li-items li {
+    font-size: 15px;
+  }
 }
 
 /* responsive 991px */
@@ -404,6 +413,14 @@ input:checked + .slider:before {
   .navbar-links {
     gap: 10px;
   }
+
+  .sidebar .sidebar-tabs li a,
+  .navbar_genre-list h4 {
+    font-size: 15px;
+  }
+  .navbar_genre-list .li-items li {
+    font-size: 14px;
+  }
 }
 
 /* responsive 575px */
@@ -418,5 +435,16 @@ input:checked + .slider:before {
 
   .Navbar {
     padding: 6px 10px;
+  }
+
+  .sidebar .sidebar-tabs li a,
+  .navbar_genre-list h4 {
+    font-size: 14px;
+  }
+  .navbar_genre-list .li-items li {
+    font-size: 13px;
+  }
+  .navbar_genre-list .li-items li {
+    padding: 5px 10px;
   }
 }
