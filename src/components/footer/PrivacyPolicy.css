@@ -78,23 +78,53 @@ body.dark-mode .privacy-policy-container ul li {
   color: #b9b8b8;
 }
 
-/* Responsive styles for smaller screens */
-@media (max-width: 768px) {
-  .privacy-policy-container {
-    padding: 20px;
-    font-size: 14px;
+/* responsive 991px */
+@media only screen and (max-width: 991px) {
+  .privacy-policy-container h1 {
+    margin: 0 0 10px;
   }
+} 
 
+/* responsive 767px */
+@media only screen and (max-width: 767px) {
   .privacy-policy-container h1 {
     font-size: 28px;
   }
-
-  .privacy-policy-container h2 {
-    font-size: 24px;
+  .privacy-policy-container p {
+    font-size: 14px;
   }
-
-  .privacy-policy-container p,
+  .privacy-policy-container h2 {
+    font-size: 20px;
+  }
   .privacy-policy-container ul li {
     font-size: 14px;
+  }
+  .privacy-policy-container p:last-child {
+    font-size: 16px;
+  }
+}
+
+/* responsive 575px */
+@media only screen and (max-width: 575px) {
+  .privacy-policy-container {
+    padding: 30px 20px;
+  }
+  .privacy-policy-container h1 {
+    font-size: 24px;
+  }
+  .privacy-policy-container p {
+    font-size: 12px;
+    margin: 8px 0 12px;
+  }
+  .privacy-policy-container h2 {
+    font-size: 16px;
+    margin: 6px 0 20px;
+  }
+  .privacy-policy-container ul li {
+    font-size: 12px;
+  }
+  .privacy-policy-container p:last-child {
+    font-size: 14px;
+    margin-top: 20px;
   }
 }
