@@ -142,7 +142,7 @@ body.dark-mode .footer-right .social-links li a:hover {
 /* responsive 767px */
 @media only screen and (max-width: 767px) {
   .footer-left p {
-    margin: 10px 0 8px;
+    margin: 10px 0 0;
   }
   .footer-center .footer-links,
   .footer-right .social-links {
