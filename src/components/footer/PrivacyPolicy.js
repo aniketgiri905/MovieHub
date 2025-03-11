@@ -3,7 +3,7 @@ import './PrivacyPolicy.css'
 
 const PrivacyPolicy = () => {
   return (
-    <div className="privacy-policy-container" style={{ padding: "40px", fontFamily: "Poppins, sans-serif" }}>
+    <div className="privacy-policy-container" style={{fontFamily: "Poppins, sans-serif" }}>
       <h1>Privacy Policy</h1>
       <p>Effective Date: February 12, 2025</p>
 

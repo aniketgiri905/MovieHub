@@ -154,3 +154,92 @@ body.dark-mode .contact-form .form-group label {
 .contact-form .form-group input {
   background-color: #fff;
 }
+
+/* responsive 991px */
+@media only screen and (max-width: 991px) {
+  .contact-header h1 {
+    margin: 8px 0 10px;
+  }
+}
+
+/* responsive 767px */
+@media only screen and (max-width: 767px) {
+  .contact-header h1 {
+    font-size: 28px;
+  }
+  .contact-header p {
+    font-size: 16px;
+    margin: 8px 0;
+  }
+  .contact-header {
+    margin-bottom: 25px;
+  }
+  .contact-details h3,
+  .social-media h3,
+  .google-map h3,
+  .faq-section h3 {
+    font-size: 20px;
+  }
+  .contact-details p {
+    font-size: 15px;
+  }
+  .contact-details,
+  .social-media,
+  .google-map,
+  .faq-section {
+    margin-bottom: 30px;
+  }
+  .faq-item h4 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .faq-item p {
+    font-size: 14px;
+  }
+}
+
+/* responsive 575px */
+@media only screen and (max-width: 575px) {
+  .contact-page {
+    padding: 30px 20px;
+  }
+  .contact-header h1 {
+    font-size: 24px;
+  }
+  .contact-form .form-group label {
+    font-size: 12px;
+  }
+  .contact-header p {
+    font-size: 14px;
+    margin: 8px 0;
+  }
+  .contact-header {
+    margin-bottom: 25px;
+  }
+  .contact-details h3,
+  .social-media h3,
+  .google-map h3,
+  .faq-section h3 {
+    font-size: 16px;
+  }
+  .contact-details p {
+    font-size: 12px;
+  }
+  .contact-details,
+  .social-media,
+  .google-map,
+  .faq-section {
+    margin-bottom: 20px;
+  }
+  .faq-item h4 {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .faq-item p {
+    font-size: 12px;
+    margin: 8px 0;
+  }
+  .social-icons a {
+    font-size: 22px; 
+  }
+}
