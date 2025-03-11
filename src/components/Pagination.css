@@ -79,3 +79,15 @@ body.dark-mode .Pagination-item:first-child,
 body.dark-mode .Pagination-item:last-child {
     color: #fff;
 }
+
+
+/* responsive 991px */
+@media only screen and (max-width: 991px) {
+    .Pagination {
+        padding: 8px 0;
+    }
+    .Pagination-item {
+        font-size: 14px;
+       padding: 6px 8px;
+    }
+}

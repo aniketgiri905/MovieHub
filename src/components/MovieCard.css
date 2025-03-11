@@ -50,17 +50,17 @@ body {
 .moviecard-items {
   position: relative;
   height: 280px;
-  width: calc(16.67% - 17px); 
+  width: calc(16.67% - 17px);
   border-radius: 15px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 .moviecard-items img {
   object-fit: fill;
   height: 280px;
-  width: 100%; 
+  width: 100%;
 }
 
 .moviecard-items:hover {
@@ -93,19 +93,18 @@ body {
   right: 10px;
   top: 10px;
   padding: 6px;
-  background-color: rgba(0, 0, 0, 0.6); 
+  background-color: rgba(0, 0, 0, 0.6);
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .watchlist-btn:hover {
-  background-color: rgba(0, 0, 0, 0.8); 
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
-
 .moviecard-items:hover .popup-message {
-  display: block; 
+  display: block;
 }
 
 /* dark theme */
@@ -116,5 +115,90 @@ body.dark-mode .watchlist-btn:hover {
   background-color: #fff;
 }
 body.dark-mode .moviecard-items {
- box-shadow: 0 4px 10px rgb(255 255 255 / 55%);
+  box-shadow: 0 4px 10px rgb(255 255 255 / 55%);
+}
+
+/* responsive 1220px */
+@media only screen and (max-width: 1220px) {
+  .moviecard-items {
+    width: calc(20% - 17px);
+  }
+}
+
+/* responsive 991px */
+@media only screen and (max-width: 991px) {
+  .moviecard-items {
+    width: calc(25% - 17px);
+  }
+  .movies-items__inner .movies-items__header > h1 {
+    font-size: 24px;
+  }
+  .movies-items__inner .movies-items__header a {
+    font-size: 15px;
+  }
+  .moviecard-items .movie-title {
+    font-size: 15px;
+    letter-spacing: normal;
+  }
+
+  .moviecard-items img,
+  .moviecard-items {
+    height: 250px;
+  }
+}
+
+/* responsive 767px */
+@media only screen and (max-width: 767px) {
+  .movies-items__inner .movies-items__header > h1 {
+    font-size: 20px;
+  }
+  .movies-items__inner .movies-items__header a,
+  .moviecard-items .movie-title {
+    font-size: 13px;
+  }
+
+  .moviecard-items img,
+  .moviecard-items {
+    height: 220px;
+  }
+  .moviecard-items {
+    width: calc(33.33% - 17px);
+  }
+
+  .watchlist-btn {
+    font-size: 22px;
+  }
+}
+
+/* responsive 575px */
+@media only screen and (max-width: 575px) {
+  .Movies__movies-items .moviecard-wrapper {
+    gap: 20px 15px;
+  }
+  .moviecard-items {
+    width: calc(50% - 8px);
+  }
+  .moviecard-items img,
+  .moviecard-items {
+    height: 180px;
+  }
+
+  .movies-items__inner .movies-items__header > h1 {
+    font-size: 18px;
+  }
+  .movies-items__inner .movies-items__header a,
+  .moviecard-items .movie-title {
+    font-size: 12px;
+  }
+  .movies-items__inner .movies-items__header{
+    padding-bottom: 15px;
+  }
+
+  .moviecard-items {
+    border-radius: 10px;
+  }
+  .moviecard-items .movie-title {
+    font-size: 11px;
+    border-radius: 0 0 10px 10px;
+  }
 }

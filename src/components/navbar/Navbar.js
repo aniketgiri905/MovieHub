@@ -46,7 +46,6 @@ const Navbar = ({
       setSelectedGenreId(null);
     }
   }, [location.pathname, setSelectedGenreId]);
-  
 
   // Toggle theme mode and update localStorage
   const toggleTheme = () => {
@@ -132,9 +131,9 @@ const Navbar = ({
           onChange={(e) => handleMovieSearch(e)}
         />
 
-        <a className="navbar-item" href="/">
+        {/* <a className="navbar-item" href="/">
           Movies
-        </a>
+        </a> */}
         <a className="navbar-item" onClick={handleWatchListClick}>
           WatchList
         </a>
@@ -160,6 +159,9 @@ const Navbar = ({
         <ul className="sidebar-tabs">
           <li>
             <a href="/">Home</a>
+          </li>
+          <li className="res-navbar-item">
+            <a onClick={handleWatchListClick}>WatchList</a>
           </li>
           <li>
             <a href="/about">About</a>

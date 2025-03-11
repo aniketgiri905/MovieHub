@@ -30,16 +30,16 @@ body {
 /* No Movies Found Section */
 .no-movies-found {
   text-align: center;
-  margin-top: 20px;
   padding: 30px 40px 40px;
-  background-color: #ffebee; 
+  background-color: #ffebee;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 .no-movies-found h2 {
   font-size: 24px;
-  color: #f44336; 
+  color: #f44336;
   margin-bottom: 10px;
 }
 
@@ -52,4 +52,52 @@ body {
 /* dark theme */
 body.dark-mode .movies-items__inner .movies-items__header > h1 {
   color: #fff;
+}
+
+/* responsive 991px */
+@media only screen and (max-width: 991px) {
+  .Movies__movies-items {
+    padding: 30px 20px 0;
+  }
+
+  .no-movies-found {
+    padding: 20px 40px 30px;
+  }
+  .no-movies-found h2 {
+    font-size: 22px;
+  }
+  .no-movies-found p {
+    font-size: 16px;
+  }
+}
+
+/* responsive 767px */
+@media only screen and (max-width: 767px) {
+  .no-movies-found {
+    padding: 10px 25px 20px;
+  }
+  .no-movies-found h2 {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+  .no-movies-found p {
+    font-size: 14px;
+  }
+}
+
+/* responsive 575px */
+@media only screen and (max-width: 575px) {
+  .Movies__movies-items {
+    padding: 20px 15px 0;
+  }
+
+  .no-movies-found {
+    padding: 10px 15px 20px;
+  }
+  .no-movies-found h2 {
+    font-size: 18px;
+  }
+  .no-movies-found p {
+    font-size: 12px;
+  }
 }

@@ -22,3 +22,30 @@ body {
 .popular-movies .moviecard-wrapper .moviecard-items {
   width: 100%;
 }
+
+/* responsive 1220 */
+@media only screen and (max-width: 1220px) {
+  .popular-movies .moviecard-wrapper {
+    width: calc(20% - 17px);
+  }
+}
+
+/* responsive 991 */
+@media only screen and (max-width: 991px) {
+  .popular-movies .moviecard-wrapper {
+    width: calc(25% - 17px);
+  }
+}
+
+/* responsive 767 */
+@media only screen and (max-width: 767px) {
+  .popular-movies .moviecard-wrapper {
+    width: calc(33.33% - 14px);
+  }
+  .popular-movies {
+    gap: 20px;
+    padding: 20px 20px 0;
+    width: 93%;
+  }
+}
+
