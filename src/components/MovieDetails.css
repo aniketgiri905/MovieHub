@@ -843,7 +843,7 @@ body.dark-mode .recommended-movie-cards .watchlist-btn:hover {
   .videos {
     display: flex;
     overflow-x: auto;
-    width: 100%;
+    width: 89%;
   }
   .videos::-webkit-scrollbar {
     display: none;
