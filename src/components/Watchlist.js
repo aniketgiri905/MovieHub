@@ -4,6 +4,7 @@ import UpArrow from "../SVG/UpArrow";
 import DownArrow from "../SVG/DownArrow";
 import genreids from "../Utility/genre.js";
 import { useNavigate } from "react-router-dom";
+import CloseArrow from "../SVG/CloseArrow.js";
 
 const Watchlist = ({
   watchlist,
@@ -220,6 +221,12 @@ const Watchlist = ({
                         onClick={() => handleRemoveFromWatchlist(movieObj)}
                       >
                         Delete
+                      </div>
+                      <div
+                        className="res-delete-btn"
+                        onClick={() => handleRemoveFromWatchlist(movieObj)}
+                      >
+                        <CloseArrow />
                       </div>
                     </td>
                   </tr>
