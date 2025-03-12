@@ -15,11 +15,14 @@ body {
   height: 100%;
   width: 100%;
   min-width: 350px;
-  object-fit: fill;
-  /* flex-shrink: 0; */
+  object-fit: cover;
+  transition: opacity 0.5s ease-in-out;
 }
+
 .banner-container {
+  display: flex;
   gap: 2px;
+  animation: scrollBanner 55s linear infinite;
 }
 .banner-container:hover {
   animation-play-state: paused;
@@ -36,11 +39,6 @@ body {
     100% {
         transform: translateX(-100%);
     }
-}
-
-.banner-container {
-  display: flex;
-  animation: scrollBanner 55s linear infinite;
 }
 
 /* responsive 1220px */

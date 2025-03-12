@@ -40,6 +40,7 @@ const MovieCard = ({
       <img
         src={`https://image.tmdb.org/t/p/original/${poster_path}`}
         alt="movie-img"
+        loading="lazy"
       />
       <div className="movie-title">{title}</div>
       <button className="watchlist-btn" onClick={handleWatchlistButtonClick}>

@@ -12,11 +12,12 @@ const MoviesByGenreList = ({
   setPageNo,
   watchlist,
   handleAddtoWatchlist,
-                handleRemoveFromWatchlist,
+  handleRemoveFromWatchlist,
 }) => {
   const [filteredPopularMovies, setFilteredPopularMovies] = useState([]);
   const [filteredTopRatedMovies, setFilteredTopRatedMovies] = useState([]);
   const [currentMovies, setCurrentMovies] = useState([]);
+  const [loading, setLoading] = useState(true); // Added loading state
   const navigate = useNavigate();
 
   const moviesPerPage = 20;
@@ -40,6 +41,9 @@ const MoviesByGenreList = ({
 
     // Update current movies for pagination
     updateCurrentMovies(filteredPopular, filteredTopRated);
+
+    // Set loading to false after movies are filtered and ready
+    setLoading(false); // Stop loading once movies are filtered
   }, [selectedGenreId, popularMovies, topRatedMovies]);
 
   useEffect(() => {
@@ -91,8 +95,12 @@ const MoviesByGenreList = ({
   return (
     <>
       <div className="MoviesByGenre genre__movie-list">
+        {/* Display loader while movies are being loaded */}
+        {loading && <div className="loader">Loading...</div>}
+
         {/* Display filtered popular movies using MovieCard */}
         {currentMovies.length > 0 &&
+          !loading &&
           currentMovies.map((movie) => (
             <div key={movie.id} className="genre__movie-item">
               <MovieCard
@@ -107,13 +115,12 @@ const MoviesByGenreList = ({
           ))}
 
         {/* If no filtered movies, display message */}
-        {filteredPopularMovies.length === 0 &&
-          filteredTopRatedMovies.length === 0 && (
-            <div>No movies found for this genre.</div>
-          )}
+        {!loading && currentMovies.length === 0 && (
+          <div>No movies found for this genre.</div>
+        )}
       </div>
 
-      {shouldShowPagination && (
+      {shouldShowPagination && !loading && (
         <Pagination
           pageForward={pageForward}
           pageBackward={pageBackward}

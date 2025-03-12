@@ -125,15 +125,14 @@ const Navbar = ({
         <img className="nav-logo" src={Logo} alt="logo" />
       </a>
       <div className="navbar-links">
-        <input
-          type="text"
-          placeholder="Search Movies"
-          onChange={(e) => handleMovieSearch(e)}
-        />
-
-        {/* <a className="navbar-item" href="/">
-          Movies
-        </a> */}
+        {location.pathname === "/" && (
+          <input
+            type="text"
+            placeholder="Search Movies"
+            onChange={(e) => handleMovieSearch(e)}
+          />
+        )}
+        
         <a className="navbar-item" onClick={handleWatchListClick}>
           WatchList
         </a>

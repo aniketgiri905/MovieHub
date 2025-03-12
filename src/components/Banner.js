@@ -48,6 +48,7 @@ const Banner = () => {
             src={`https://image.tmdb.org/t/p/original${movieObj.poster_path}`}
             alt="movie poster"
             onClick={() => handleBannerClick(movieObj.id)}
+            loading="lazy"
           />
         ))}
         {/* Duplicate the images for seamless looping */}
@@ -57,6 +58,7 @@ const Banner = () => {
             src={`https://image.tmdb.org/t/p/original${movieObj.poster_path}`}
             alt="movie poster"
             onClick={() => handleBannerClick(movieObj.id)}
+            loading="lazy"
           />
         ))}
       </div>
