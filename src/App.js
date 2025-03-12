@@ -1,10 +1,7 @@
 import "./App.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import {
-  Routes,
-  Route,
-} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Movies from "./components/Movies";
 import Navbar from "./components/navbar/Navbar";
 import Banner from "./components/Banner";
@@ -33,6 +30,7 @@ function App() {
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [totalPages, setTotalPages] = useState();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loggedInUser = JSON.parse(localStorage.getItem("isUserLoggedIn"));
@@ -47,8 +45,8 @@ function App() {
     localStorage.setItem("isUserLoggedIn", JSON.stringify(status));
   };
 
-   // Fetch all pages of movies (popular and top-rated) from API
-   useEffect(() => {
+  // Fetch all pages of movies (popular and top-rated) from API
+  useEffect(() => {
     const fetchMovies = async () => {
       const apiKey = "1ac79c500b8c1cb82335bb8918cac0fb"; // Your API key
       const baseURL = "https://api.themoviedb.org/3/movie";
@@ -65,10 +63,10 @@ function App() {
           });
           let totalPagesLength;
           const totalPages = firstPageResponse.data.total_pages;
-          if(totalPages >= 50) {
+          if (totalPages >= 50) {
             totalPagesLength = 50;
             setTotalPages(50);
-          }else {
+          } else {
             setTotalPages(totalPages);
           }
 
@@ -101,8 +99,10 @@ function App() {
         // Fetching top-rated movies
         const topRatedMoviesData = await fetchAllPages("top_rated");
         setTopRatedMovies(topRatedMoviesData);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching movies:", error);
+        setLoading(false);
       }
     };
 
@@ -164,7 +164,6 @@ function App() {
       <div className="main-content">
         <Navbar
           setSearchMovie={setSearchMovie}
-          searchMovie={searchMovie}
           selectedGenreId={selectedGenreId}
           setSelectedGenreId={setSelectedGenreId}
           setUserNavigateToLoginSignup={setUserNavigateToLoginSignup}
@@ -174,138 +173,149 @@ function App() {
           setIsDarkMode={setIsDarkMode}
         />
 
-        <Routes>
-          {/* Home route */}
-          <Route
-            path="/"
-            element={
-              <>
-                <Banner />
-                <Movies
-                  handleAddtoWatchlist={handleAddtoWatchlist}
-                  handleRemoveFromWatchlist={handleRemoveFromWatchlist}
-                  watchlist={watchlist}
-                  popularMovies={popularMovies}
-                  topRatedMovies={topRatedMovies}
-                  searchMovie={searchMovie}
-                />
-              </>
-            }
-          />
-
-          {/* Watchlist route */}
-          <Route
-            path="/watchlist"
-            element={
-              // If the user is logged in, show the watchlist, otherwise redirect to login
-              isUserLoggedIn && (
-                <Watchlist
-                  watchlist={watchlist}
-                  setWatchlist={setWatchlist}
-                  handleRemoveFromWatchlist={handleRemoveFromWatchlist}
-                  isUserLoggedIn={isUserLoggedIn}
-                  setIsUserLoggedIn={setIsUserLoggedIn}
-                />
-              )
-            }
-          />
-
-          {/* Movie Details */}
-          <Route
-            path="/movie/:id"
-            element={
-              <MovieDetails
-                handleAddtoWatchlist={handleAddtoWatchlist}
-                handleRemoveFromWatchlist={handleRemoveFromWatchlist}
-                watchlist={watchlist}
+        {/* Show loader until movies are fetched */}
+        {loading ? (
+          <div className="loader">
+            <p>Loading Movies...</p>
+            <div className="spinner"></div>
+          </div>
+        ) : (
+          <>
+            <Routes>
+              {/* Home route */}
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Banner />
+                    <Movies
+                      handleAddtoWatchlist={handleAddtoWatchlist}
+                      handleRemoveFromWatchlist={handleRemoveFromWatchlist}
+                      watchlist={watchlist}
+                      popularMovies={popularMovies}
+                      topRatedMovies={topRatedMovies}
+                      searchMovie={searchMovie}
+                    />
+                  </>
+                }
               />
-            }
-          />
 
-          {/* Movies by Genre */}
-          <Route
-            path="/genre/:genre"
-            element={
-              <MoviesByGenreList
-                popularMovies={popularMovies}
-                topRatedMovies={topRatedMovies}
-                selectedGenreId={selectedGenreId}
-                pageNo={pageNo}
-                setPageNo={setPageNo}
-                watchlist={watchlist}
-                handleAddtoWatchlist={handleAddtoWatchlist}
-                handleRemoveFromWatchlist={handleRemoveFromWatchlist}
+              {/* Watchlist route */}
+              <Route
+                path="/watchlist"
+                element={
+                  // If the user is logged in, show the watchlist, otherwise redirect to login
+                  isUserLoggedIn && (
+                    <Watchlist
+                      watchlist={watchlist}
+                      setWatchlist={setWatchlist}
+                      handleRemoveFromWatchlist={handleRemoveFromWatchlist}
+                      isUserLoggedIn={isUserLoggedIn}
+                      setIsUserLoggedIn={setIsUserLoggedIn}
+                    />
+                  )
+                }
               />
-            }
-          />
 
-          {/* Popular Movies */}
-          <Route
-            path="/movies/popular-movies"
-            element={
-              <PopularMovies
-                popularMovies={popularMovies}
-                handleAddtoWatchlist={handleAddtoWatchlist}
-                handleRemoveFromWatchlist={handleRemoveFromWatchlist}
-                watchlist={watchlist}
-                pageNo={pageNo}
-                setPageNo={setPageNo}
-                totalPages={totalPages}
+              {/* Movie Details */}
+              <Route
+                path="/movie/:id"
+                element={
+                  <MovieDetails
+                    handleAddtoWatchlist={handleAddtoWatchlist}
+                    handleRemoveFromWatchlist={handleRemoveFromWatchlist}
+                    watchlist={watchlist}
+                  />
+                }
               />
-            }
-          />
 
-          {/* Top Rated Movies */}
-          <Route
-            path="/movies/top-rated-movies"
-            element={
-              <TopRatedMovies
-                topRatedMovies={topRatedMovies}
-                handleAddtoWatchlist={handleAddtoWatchlist}
-                handleRemoveFromWatchlist={handleRemoveFromWatchlist}
-                watchlist={watchlist}
-                pageNo={pageNo}
-                setPageNo={setPageNo}
-                totalPages={totalPages}
+              {/* Movies by Genre */}
+              <Route
+                path="/genre/:genre"
+                element={
+                  <MoviesByGenreList
+                    popularMovies={popularMovies}
+                    topRatedMovies={topRatedMovies}
+                    selectedGenreId={selectedGenreId}
+                    pageNo={pageNo}
+                    setPageNo={setPageNo}
+                    watchlist={watchlist}
+                    handleAddtoWatchlist={handleAddtoWatchlist}
+                    handleRemoveFromWatchlist={handleRemoveFromWatchlist}
+                  />
+                }
               />
-            }
-          />
-        </Routes>
 
-        <Routes>
-          {/* Footer routes */}
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        </Routes>
+              {/* Popular Movies */}
+              <Route
+                path="/movies/popular-movies"
+                element={
+                  <PopularMovies
+                    popularMovies={popularMovies}
+                    handleAddtoWatchlist={handleAddtoWatchlist}
+                    handleRemoveFromWatchlist={handleRemoveFromWatchlist}
+                    watchlist={watchlist}
+                    pageNo={pageNo}
+                    setPageNo={setPageNo}
+                    totalPages={totalPages}
+                    searchMovie={searchMovie}
+                  />
+                }
+              />
 
-        <Routes>
-          {/* Login and Signup routes */}
-          <Route
-            path="/login"
-            element={
-              <LoginForm
-                userNavigateToLoginSignup={userNavigateToLoginSignup}
-                setIsUserLoggedIn={handleIsUserLoggedIn}
-                setIsForgotPassword={setIsForgotPassword}
+              {/* Top Rated Movies */}
+              <Route
+                path="/movies/top-rated-movies"
+                element={
+                  <TopRatedMovies
+                    topRatedMovies={topRatedMovies}
+                    handleAddtoWatchlist={handleAddtoWatchlist}
+                    handleRemoveFromWatchlist={handleRemoveFromWatchlist}
+                    watchlist={watchlist}
+                    pageNo={pageNo}
+                    setPageNo={setPageNo}
+                    totalPages={totalPages}
+                  />
+                }
               />
-            }
-          />
-          <Route
-            path="/sign-up"
-            element={
-              <LoginForm
-                userNavigateToLoginSignup={userNavigateToLoginSignup}
+            </Routes>
+
+            <Routes>
+              {/* Footer routes */}
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            </Routes>
+
+            <Routes>
+              {/* Login and Signup routes */}
+              <Route
+                path="/login"
+                element={
+                  <LoginForm
+                    userNavigateToLoginSignup={userNavigateToLoginSignup}
+                    setIsUserLoggedIn={handleIsUserLoggedIn}
+                    setIsForgotPassword={setIsForgotPassword}
+                  />
+                }
               />
-            }
-          />
-          <Route
-            path="/forgot-password"
-            element={
-              <ForgotPassword setIsForgotPassword={setIsForgotPassword} />
-            }
-          />
-        </Routes>
+              <Route
+                path="/sign-up"
+                element={
+                  <LoginForm
+                    userNavigateToLoginSignup={userNavigateToLoginSignup}
+                  />
+                }
+              />
+              <Route
+                path="/forgot-password"
+                element={
+                  <ForgotPassword setIsForgotPassword={setIsForgotPassword} />
+                }
+              />
+            </Routes>
+          </>
+        )}
 
         <Footer />
       </div>
